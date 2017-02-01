@@ -1,0 +1,156 @@
+{% extends 'backoffice/base.html' %}
+{% load staticfiles %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="content content-form">
+<div>
+
+    {{ form.non_field_errors }}
+    <form class="form" method="{{ method|default:'POST'}}" action="{{ action }}">
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        <table class="form-table">
+            <tbody>
+                <tr>
+                    <th class="col-2-12">{{ form.user.label_tag }}</th>
+                    <td class="col-10-12 typeahead_field ">
+                        {{ form.user }}
+                        {{ form.user.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-2-12">{{ form.treatment.label_tag }}</th>
+                    <td class="col-10-12">
+                        <div class="form-field">{{ form.treatment }}<span class="required">*</span></div>
+                        {{ form.treatment.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-2-12">{{ form.service.label_tag }}</th>
+                    <td class="col-10-12">
+                        <div class="service">{{ form.service }}<span class="required">*</span></div>
+                        {{ form.service.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-2-12">{{ form.promotion_code.label_tag }}</th>
+                    <td class="col-10-12">
+                        <div>{{ form.promotion_code }}</div>
+                        {{ form.promotion_code.errors }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <hr></hr>
+        
+        <table class="form-table">
+            <tbody>
+                <tr>
+                <th class="col-2-12"></th>
+                <td class="col-10-12">
+                <button class="button">
+                    <i class="fa fa-floppy-o white fa-fw"></i> {{ button_text|default:'Save' }}</button>
+                </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </form>
+
+</div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bower/bower_components/datetimepicker/jquery.datetimepicker.css' %}" />
+{% endblock %}
+
+{% block extra_javascript %}
+    <script src="{% static 'bower/bower_components/typeahead.js/dist/bloodhound.js' %}"></script>
+    <script src="{% static 'bower/bower_components/typeahead.js/dist/typeahead.jquery.js' %}"></script>
+    <script src="{% static 'bower/bower_components/datetimepicker/build/jquery.datetimepicker.full.js' %}"></script>
+    <script>
+
+        var source = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('data'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            remote: {
+                url: '/backoffice/customers/search/?query=%QUERY',
+                wildcard: '%QUERY'
+            }
+        });
+
+
+        $('#id_time').datetimepicker({
+            step: 15
+        });
+        
+        if( !$('#id_treatment').val() ) {
+            $("#id_service option").remove();
+            $("#id_service").html('<option value selected="selected">---------</option>');
+        }
+
+        $(document).on('change exit', '#id_treatment', function(event) {
+            event.preventDefault();
+            var $partnerField = $('.service');
+            $partnerField.fadeOut(300);
+            
+            $.ajax({
+                type: "GET",
+                url: "{% url 'backoffice:treatments:get_products' %}",
+                data: $('.form').serialize(),
+                success: function(response) {
+                    $partnerField.html(response);
+                },
+                error: function(response) {
+                    $('.form').submit()
+                },
+                complete: function(response) {
+                    $partnerField.fadeIn(300);
+                }
+            });
+        });
+
+
+
+        $('input[data-type="typeahead-identifier"]').typeahead({
+            highlight: true,
+            minLength: 3,
+        }, {
+            name: 'data',
+            limit: 10,
+            source: source,
+            display: function (data) {
+                return data.name + " <" + data.phone + ">";
+            },
+            templates: {
+                suggestion: function (data) {
+                    return "<div class='list'>" + data.name + "<br />" + data.phone + "</div>";
+                }
+            }
+        });
+
+       
+        $(document).on('typeahead:selected', '#id_user', function(event) {
+            event.preventDefault();
+            var mobile_number = $(this).val().match(/<(.*?)>/i)[1];
+            if (mobile_number) {
+                $.ajax({
+                    type: "GET",
+                    url: "{% url 'backoffice:customers:get_data' %}",
+                    data: {'mobile_number': mobile_number},
+                    success: function(response) {
+                    },
+                    error: function(response) {
+                    }   
+                }); 
+            } else {
+            }
+        });
+
+    </script>
+{% endblock %}

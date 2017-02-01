@@ -1,0 +1,1 @@
+/home/angga/other/rumahtotok/static_files/bower/bower_components/typeahead.js/test/bloodhound/options_parser_spec.js

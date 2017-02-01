@@ -1,0 +1,1 @@
+/home/angga/other/rumahtotok/static_files/bower/bower_components/typeahead.js/src/typeahead/event_emitter.js

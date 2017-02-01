@@ -1,0 +1,33 @@
+{% extends 'backoffice/base.html' %}
+{% load staticfiles %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="toolbar">
+        <a class="button" href="{% url 'backoffice:therapists:add' %}"><i class="fa fa-plus-circle white fa-fw"></i> Add</a>
+    </div>
+
+    <div class="table-wrapper">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Store</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        {% for therapist in therapists %}
+        <tr>
+            <td><a class="id" href="{% url 'backoffice:therapists:detail' therapist.id %}"> {{ therapist.user.code }} </a></td>
+            <td>{{ therapist.user.name }}</td>
+            <td>{{ therapist.store.name }}</td>
+            <td>{{ therapist.is_active }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+    
+</div>
+{% endblock %}

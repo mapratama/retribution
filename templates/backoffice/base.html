@@ -1,0 +1,94 @@
+{% load staticfiles %}
+{% load humanize %}
+{% load compress %}
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" href="{% static 'img/icon/icon.ico' %}" type="image/x-icon">
+    {% block extra_header %}{% endblock %}
+
+    {% compress css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/simplegrid.css' %}" />
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'css/font-awesome.css' %}" />
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'css/style.scss' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}"/>
+        {% block extra_css %}{% endblock %}
+    {% endcompress %}
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="col-1-1 nav-top"> 
+            <div class="gambar-logo"></div>
+            <div class="merchant-name"> <h2>Rumah Totok Bekasi</h2></div>
+            <div class="employee-name"> 
+                Hi {{ request.user|title }} |
+                <a href="{% url 'backoffice:log_out' %}"><i class="fa fa-sign-out fa-fw white"></i></a>
+            </div>
+
+        </div>
+
+        <div class="col-2-12 nav-left">
+            <div class="nav-left">
+                <ul>
+                    <li><a href="{% url 'backoffice:customers:index' %}"><i class="fa fa-user silver fa-fw"></i> Customers</a></li>
+                    <li><a href="{% url 'backoffice:stores:index' %}"><i class="fa  fa-map-marker silver fa-fw"></i> Stores</a></li>
+                    <li><a href="{% url 'backoffice:treatments:index' %}"><i class="fa fa-pagelines silver fa-fw"></i> Treatments</a></li>
+                    <li><a href="{% url 'backoffice:therapists:index' %}"><i class="fa fa-user-md silver fa-fw"></i> Therapists</a></li>
+                    <li><a href="{% url 'backoffice:orders:index' %}"><i class="fa fa-list-ul silver fa-fw"></i> Orders </a></li>
+                    <li><a href="{% url 'backoffice:bookings:index' %}"><i class="fa fa-calendar silver fa-fw"></i> Bookings</a></li>
+                    <li><a href="{% url 'backoffice:payment_confirmations:index' %}"><i class="fa fa fa-check-square-o fa-fw"></i> Payment Confirmations</a></li>
+                    <li><a href="{% url 'backoffice:promotions:index' %}"><i class="fa fa-gift silver fa-fw"></i> Promotions</a></li>
+                    <li><a href="{% url 'backoffice:reports:index' %}"><i class="fa fa-file-text silver fa-fw"></i> Reports</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-10-12 nav-right">
+
+            <div class="title-content">
+                <p class="title"> {{ title }} </p>
+            </div>
+            
+            <div class="clear"> </div>
+            {% for message in messages %}
+                <span class="message animated once bounceIn {{ message.tags }}"> {{ message }} </span>
+            {% endfor %}
+
+            {% block content %} {% endblock %}
+
+            <div class="copy">
+                <p>Copyright Rumah Totok @2016</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    {% compress js %}
+        <script src="{% static 'js/jquery-min.js' %}"></script>
+        {% block extra_javascript %}{% endblock %}       
+        <script>
+            $( document ).on('click touchstart', '.dropdown', function(e) {
+                $('.dropdown-content').addClass(' show');
+            });
+
+            window.onclick = function(event) {
+            if ($(event.target).parents('.dropdown').length==0) {
+                var dropdowns = $(".dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            }
+        </script>
+
+    {% endcompress %}
+</body>
+</html>
+

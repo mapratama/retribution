@@ -1,0 +1,2295 @@
+/*
+  Simple Grid
+  Project Page - http://thisisdallas.github.com/Simple-Grid/
+  Author - Dallas Bass
+  Site - http://dallasbass.com
+*/
+
+*, *:after, *:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+}
+
+[class*='col-'] {
+	float: left;
+  min-height: 1px;
+	padding-right: 20px; /* column-space */
+}
+
+.grid {
+	width: 100%;
+	max-width: 1140px;
+	min-width: 748px; /* when using padded grid on ipad in portrait mode, width should be viewport-width - padding = (768 - 20) = 748. actually, it should be even smaller to allow for padding of grid containing element */
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.grid:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.grid-pad {
+	padding-top: 20px;
+	padding-left: 20px; /* grid-space to left */
+	padding-right: 0; /* grid-space to right: (grid-space-left - column-space) e.g. 20px-20px=0 */
+}
+
+.push-right {
+	float: right;
+}
+
+/* Content Columns */
+
+.col-1-1 {
+	width: 100%;
+}
+.col-2-3, .col-8-12 {
+	width: 66.66%;
+}
+
+.col-1-2, .col-6-12 {
+	width: 50%;
+}
+
+.col-1-3, .col-4-12 {
+	width: 33.33%;
+}
+
+.col-1-4, .col-3-12 {
+	width: 25%;
+}
+
+.col-1-5 {
+	width: 20%;
+}
+
+.col-1-6, .col-2-12 {
+	width: 16.667%;
+}
+
+.col-1-7 {
+	width: 14.28%;
+}
+
+.col-1-8 {
+	width: 12.5%;
+}
+
+.col-1-9 {
+	width: 11.1%;
+}
+
+.col-1-10 {
+	width: 10%;
+}
+
+.col-1-11 {
+	width: 9.09%;
+}
+
+.col-1-12 {
+	width: 8.33%
+}
+
+/* Layout Columns */
+
+.col-11-12 {
+	width: 91.66%
+}
+
+.col-10-12 {
+	width: 83.333%;
+}
+
+.col-9-12 {
+	width: 75%;
+}
+
+.col-5-12 {
+	width: 41.66%;
+}
+
+.col-7-12 {
+	width: 58.33%
+}
+
+/* Pushing blocks */
+
+.push-2-3, .push-8-12 {
+	margin-left: 66.66%;
+}
+
+.push-1-2, .push-6-12 {
+	margin-left: 50%;
+}
+
+.push-1-3, .push-4-12 {
+	margin-left: 33.33%;
+}
+
+.push-1-4, .push-3-12 {
+	margin-left: 25%;
+}
+
+.push-1-5 {
+	margin-left: 20%;
+}
+
+.push-1-6, .push-2-12 {
+	margin-left: 16.667%;
+}
+
+.push-1-7 {
+	margin-left: 14.28%;
+}
+
+.push-1-8 {
+	margin-left: 12.5%;
+}
+
+.push-1-9 {
+	margin-left: 11.1%;
+}
+
+.push-1-10 {
+	margin-left: 10%;
+}
+
+.push-1-11 {
+	margin-left: 9.09%;
+}
+
+.push-1-12 {
+	margin-left: 8.33%
+}
+
+@media handheld, only screen and (max-width: 767px) {
+	.grid {
+		width: 100%;
+		min-width: 0;
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 20px; /* grid-space to left */
+		padding-right: 10px; /* grid-space to right: (grid-space-left - column-space) e.g. 20px-10px=10px */
+	}
+
+	[class*='col-'] {
+		width: auto;
+		float: none;
+		margin: 10px 0;
+		padding-left: 0;
+		padding-right: 10px; /* column-space */
+	}
+
+	/* Mobile Layout */
+
+	[class*='mobile-col-'] {
+		float: left;
+		margin: 0 0 10px;
+		padding-left: 0;
+		padding-right: 10px; /* column-space */
+		padding-bottom: 0;
+	}
+
+	.mobile-col-1-1 {
+		width: 100%;
+	}
+	.mobile-col-2-3, .mobile-col-8-12 {
+		width: 66.66%;
+	}
+
+	.mobile-col-1-2, .mobile-col-6-12 {
+		width: 50%;
+	}
+
+	.mobile-col-1-3, .mobile-col-4-12 {
+		width: 33.33%;
+	}
+
+	.mobile-col-1-4, .mobile-col-3-12 {
+		width: 25%;
+	}
+
+	.mobile-col-1-5 {
+		width: 20%;
+	}
+
+	.mobile-col-1-6, .mobile-col-2-12 {
+		width: 16.667%;
+	}
+
+	.mobile-col-1-7 {
+		width: 14.28%;
+	}
+
+	.mobile-col-1-8 {
+		width: 12.5%;
+	}
+
+	.mobile-col-1-9 {
+		width: 11.1%;
+	}
+
+	.mobile-col-1-10 {
+		width: 10%;
+	}
+
+	.mobile-col-1-11 {
+		width: 9.09%;
+	}
+
+	.mobile-col-1-12 {
+		width: 8.33%
+	}
+
+	/* Layout Columns */
+
+	.mobile-col-11-12 {
+		width: 91.66%
+	}
+
+	.mobile-col-10-12 {
+		width: 83.333%;
+	}
+
+	.mobile-col-9-12 {
+		width: 75%;
+	}
+
+	.mobile-col-5-12 {
+		width: 41.66%;
+	}
+
+	.mobile-col-7-12 {
+		width: 58.33%
+	}
+
+	.hide-on-mobile {
+		display: none !important;
+		width: 0;
+		height: 0;
+	}
+}
+
+/*!
+ *  Font Awesome 4.0.3 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */
+/* FONT PATH
+ * -------------------------- */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('/static/fonts/fontawesome-webfont.eot?v=4.0.3&2806678fd71b');
+  src: url('/static/fonts/fontawesome-webfont.eot?&2806678fd71b#iefix&v=4.0.3') format('embedded-opentype'), url('/static/fonts/fontawesome-webfont.woff?v=4.0.3&2806678fd71b') format('woff'), url('/static/fonts/fontawesome-webfont.ttf?v=4.0.3&2806678fd71b') format('truetype'), url('/static/fonts/fontawesome-webfont.svg?v=4.0.3&2806678fd71b#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal; }
+
+/* line 17, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.box1 {
+  display: inline-block;
+  width: 15%;
+  padding: 5px .5em;
+  background: rgba(238, 238, 238, 0.26);
+  margin: .5em 1% .5em 0;
+  text-align: left;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 13px; }
+
+/* line 29, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fontawesome-icon-list a i {
+  margin-right: 10px;
+  font-size: 25px;
+  color: #757575; }
+
+/* line 34, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.margin-top {
+  margin-top: 20px; }
+
+/* line 38, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.black- {
+  color: #000000; }
+
+/* line 42, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.silver {
+  color: #c5d0de; }
+
+/* line 46, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.white {
+  color: #ffffff; }
+
+/* line 50, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+/* makes the font 33% larger relative to the icon container */
+/* line 60, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-lg {
+  font-size: 1.33333em;
+  line-height: 0.75em;
+  vertical-align: -15%; }
+
+/* line 65, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-2x {
+  font-size: 2em; }
+
+/* line 68, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-3x {
+  font-size: 3em; }
+
+/* line 71, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-4x {
+  font-size: 4em; }
+
+/* line 74, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-5x {
+  font-size: 5em; }
+
+/* line 77, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-fw {
+  width: 1.28571em;
+  text-align: center; }
+
+/* line 81, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-ul {
+  padding-left: 0;
+  margin-left: 2.14286em;
+  list-style-type: none; }
+
+/* line 86, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-ul > li {
+  position: relative; }
+
+/* line 89, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-li {
+  position: absolute;
+  left: -2.14286em;
+  width: 2.14286em;
+  top: 0.14286em;
+  text-align: center; }
+
+/* line 96, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-li.fa-lg {
+  left: -1.85714em; }
+
+/* line 99, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-border {
+  padding: .2em .25em .15em;
+  border: solid 0.08em #eeeeee;
+  border-radius: .1em; }
+
+/* line 104, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.pull-right {
+  float: right; }
+
+/* line 107, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.pull-left {
+  float: left; }
+
+/* line 110, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa.pull-left {
+  margin-right: .3em; }
+
+/* line 113, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa.pull-right {
+  margin-left: .3em; }
+
+/* line 116, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-spin {
+  -webkit-animation: spin 2s infinite linear;
+  -moz-animation: spin 2s infinite linear;
+  -o-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear; }
+
+@-moz-keyframes spin {
+  /* line 123, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+  0% {
+    -moz-transform: rotate(0deg); }
+
+  /* line 126, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+  100% {
+    -moz-transform: rotate(359deg); } }
+
+@-webkit-keyframes spin {
+  /* line 131, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+  0% {
+    -webkit-transform: rotate(0deg); }
+
+  /* line 134, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+  100% {
+    -webkit-transform: rotate(359deg); } }
+
+@-o-keyframes spin {
+  /* line 139, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+  0% {
+    -o-transform: rotate(0deg); }
+
+  /* line 142, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+  100% {
+    -o-transform: rotate(359deg); } }
+
+@-ms-keyframes spin {
+  /* line 147, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+  0% {
+    -ms-transform: rotate(0deg); }
+
+  /* line 150, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+  100% {
+    -ms-transform: rotate(359deg); } }
+
+@keyframes spin {
+  /* line 155, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+  0% {
+    transform: rotate(0deg); }
+
+  /* line 158, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+  100% {
+    transform: rotate(359deg); } }
+
+/* line 162, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-rotate-90 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg); }
+
+/* line 170, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-rotate-180 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg); }
+
+/* line 178, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-rotate-270 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg); }
+
+/* line 186, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-flip-horizontal {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
+  -webkit-transform: scale(-1, 1);
+  -moz-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  transform: scale(-1, 1); }
+
+/* line 194, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-flip-vertical {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1);
+  -webkit-transform: scale(1, -1);
+  -moz-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  -o-transform: scale(1, -1);
+  transform: scale(1, -1); }
+
+/* line 202, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-stack {
+  position: relative;
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  vertical-align: middle; }
+
+/* line 211, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-stack-1x, .fa-stack-2x {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center; }
+
+/* line 217, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-stack-1x {
+  line-height: inherit; }
+
+/* line 220, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-stack-2x {
+  font-size: 2em; }
+
+/* line 223, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-inverse {
+  color: #ffffff; }
+
+/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+   readers do not read off random characters that represent icons */
+/* line 228, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-glass:before {
+  content: "\f000"; }
+
+/* line 231, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-music:before {
+  content: "\f001"; }
+
+/* line 234, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-search:before {
+  content: "\f002"; }
+
+/* line 237, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-envelope-o:before {
+  content: "\f003"; }
+
+/* line 240, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-heart:before {
+  content: "\f004"; }
+
+/* line 243, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-star:before {
+  content: "\f005"; }
+
+/* line 246, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-star-o:before {
+  content: "\f006"; }
+
+/* line 249, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-user:before {
+  content: "\f007"; }
+
+/* line 252, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-film:before {
+  content: "\f008"; }
+
+/* line 255, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-th-large:before {
+  content: "\f009"; }
+
+/* line 258, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-th:before {
+  content: "\f00a"; }
+
+/* line 261, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-th-list:before {
+  content: "\f00b"; }
+
+/* line 264, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-check:before {
+  content: "\f00c"; }
+
+/* line 267, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-times:before {
+  content: "\f00d"; }
+
+/* line 270, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-search-plus:before {
+  content: "\f00e"; }
+
+/* line 273, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-search-minus:before {
+  content: "\f010"; }
+
+/* line 276, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-power-off:before {
+  content: "\f011"; }
+
+/* line 279, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-signal:before {
+  content: "\f012"; }
+
+/* line 283, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-gear:before, .fa-cog:before {
+  content: "\f013"; }
+
+/* line 286, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-trash-o:before {
+  content: "\f014"; }
+
+/* line 289, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-home:before {
+  content: "\f015"; }
+
+/* line 292, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-file-o:before {
+  content: "\f016"; }
+
+/* line 295, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-clock-o:before {
+  content: "\f017"; }
+
+/* line 298, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-road:before {
+  content: "\f018"; }
+
+/* line 301, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-download:before {
+  content: "\f019"; }
+
+/* line 304, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-arrow-circle-o-down:before {
+  content: "\f01a"; }
+
+/* line 307, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-arrow-circle-o-up:before {
+  content: "\f01b"; }
+
+/* line 310, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-inbox:before {
+  content: "\f01c"; }
+
+/* line 313, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-play-circle-o:before {
+  content: "\f01d"; }
+
+/* line 317, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-rotate-right:before, .fa-repeat:before {
+  content: "\f01e"; }
+
+/* line 320, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-refresh:before {
+  content: "\f021"; }
+
+/* line 323, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-list-alt:before {
+  content: "\f022"; }
+
+/* line 326, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-lock:before {
+  content: "\f023"; }
+
+/* line 329, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-flag:before {
+  content: "\f024"; }
+
+/* line 332, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-headphones:before {
+  content: "\f025"; }
+
+/* line 335, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-volume-off:before {
+  content: "\f026"; }
+
+/* line 338, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-volume-down:before {
+  content: "\f027"; }
+
+/* line 341, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-volume-up:before {
+  content: "\f028"; }
+
+/* line 344, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-qrcode:before {
+  content: "\f029"; }
+
+/* line 347, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-barcode:before {
+  content: "\f02a"; }
+
+/* line 350, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-tag:before {
+  content: "\f02b"; }
+
+/* line 353, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-tags:before {
+  content: "\f02c"; }
+
+/* line 356, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-book:before {
+  content: "\f02d"; }
+
+/* line 359, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-bookmark:before {
+  content: "\f02e"; }
+
+/* line 362, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-print:before {
+  content: "\f02f"; }
+
+/* line 365, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-camera:before {
+  content: "\f030"; }
+
+/* line 368, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-font:before {
+  content: "\f031"; }
+
+/* line 371, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-bold:before {
+  content: "\f032"; }
+
+/* line 374, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-italic:before {
+  content: "\f033"; }
+
+/* line 377, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-text-height:before {
+  content: "\f034"; }
+
+/* line 380, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-text-width:before {
+  content: "\f035"; }
+
+/* line 383, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-align-left:before {
+  content: "\f036"; }
+
+/* line 386, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-align-center:before {
+  content: "\f037"; }
+
+/* line 389, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-align-right:before {
+  content: "\f038"; }
+
+/* line 392, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-align-justify:before {
+  content: "\f039"; }
+
+/* line 395, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-list:before {
+  content: "\f03a"; }
+
+/* line 399, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-dedent:before, .fa-outdent:before {
+  content: "\f03b"; }
+
+/* line 402, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-indent:before {
+  content: "\f03c"; }
+
+/* line 405, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-video-camera:before {
+  content: "\f03d"; }
+
+/* line 408, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-picture-o:before {
+  content: "\f03e"; }
+
+/* line 411, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-pencil:before {
+  content: "\f040"; }
+
+/* line 414, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-map-marker:before {
+  content: "\f041"; }
+
+/* line 417, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-adjust:before {
+  content: "\f042"; }
+
+/* line 420, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-tint:before {
+  content: "\f043"; }
+
+/* line 424, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-edit:before, .fa-pencil-square-o:before {
+  content: "\f044"; }
+
+/* line 427, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-share-square-o:before {
+  content: "\f045"; }
+
+/* line 430, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-check-square-o:before {
+  content: "\f046"; }
+
+/* line 433, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-arrows:before {
+  content: "\f047"; }
+
+/* line 436, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-step-backward:before {
+  content: "\f048"; }
+
+/* line 439, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-fast-backward:before {
+  content: "\f049"; }
+
+/* line 442, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-backward:before {
+  content: "\f04a"; }
+
+/* line 445, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-play:before {
+  content: "\f04b"; }
+
+/* line 448, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-pause:before {
+  content: "\f04c"; }
+
+/* line 451, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-stop:before {
+  content: "\f04d"; }
+
+/* line 454, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-forward:before {
+  content: "\f04e"; }
+
+/* line 457, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-fast-forward:before {
+  content: "\f050"; }
+
+/* line 460, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-step-forward:before {
+  content: "\f051"; }
+
+/* line 463, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-eject:before {
+  content: "\f052"; }
+
+/* line 466, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-chevron-left:before {
+  content: "\f053"; }
+
+/* line 469, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-chevron-right:before {
+  content: "\f054"; }
+
+/* line 472, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-plus-circle:before {
+  content: "\f055"; }
+
+/* line 475, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-minus-circle:before {
+  content: "\f056"; }
+
+/* line 478, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-times-circle:before {
+  content: "\f057"; }
+
+/* line 481, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-check-circle:before {
+  content: "\f058"; }
+
+/* line 484, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-question-circle:before {
+  content: "\f059"; }
+
+/* line 487, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-info-circle:before {
+  content: "\f05a"; }
+
+/* line 490, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-crosshairs:before {
+  content: "\f05b"; }
+
+/* line 493, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-times-circle-o:before {
+  content: "\f05c"; }
+
+/* line 496, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-check-circle-o:before {
+  content: "\f05d"; }
+
+/* line 499, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-ban:before {
+  content: "\f05e"; }
+
+/* line 502, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-arrow-left:before {
+  content: "\f060"; }
+
+/* line 505, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-arrow-right:before {
+  content: "\f061"; }
+
+/* line 508, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-arrow-up:before {
+  content: "\f062"; }
+
+/* line 511, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-arrow-down:before {
+  content: "\f063"; }
+
+/* line 515, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-mail-forward:before, .fa-share:before {
+  content: "\f064"; }
+
+/* line 518, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-expand:before {
+  content: "\f065"; }
+
+/* line 521, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-compress:before {
+  content: "\f066"; }
+
+/* line 524, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-plus:before {
+  content: "\f067"; }
+
+/* line 527, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-minus:before {
+  content: "\f068"; }
+
+/* line 530, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-asterisk:before {
+  content: "\f069"; }
+
+/* line 533, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-exclamation-circle:before {
+  content: "\f06a"; }
+
+/* line 536, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-gift:before {
+  content: "\f06b"; }
+
+/* line 539, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-leaf:before {
+  content: "\f06c"; }
+
+/* line 542, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-fire:before {
+  content: "\f06d"; }
+
+/* line 545, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-eye:before {
+  content: "\f06e"; }
+
+/* line 548, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-eye-slash:before {
+  content: "\f070"; }
+
+/* line 552, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-warning:before, .fa-exclamation-triangle:before {
+  content: "\f071"; }
+
+/* line 555, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-plane:before {
+  content: "\f072"; }
+
+/* line 558, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-calendar:before {
+  content: "\f073"; }
+
+/* line 561, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-random:before {
+  content: "\f074"; }
+
+/* line 564, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-comment:before {
+  content: "\f075"; }
+
+/* line 567, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-magnet:before {
+  content: "\f076"; }
+
+/* line 570, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-chevron-up:before {
+  content: "\f077"; }
+
+/* line 573, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-chevron-down:before {
+  content: "\f078"; }
+
+/* line 576, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-retweet:before {
+  content: "\f079"; }
+
+/* line 579, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-shopping-cart:before {
+  content: "\f07a"; }
+
+/* line 582, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-folder:before {
+  content: "\f07b"; }
+
+/* line 585, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-folder-open:before {
+  content: "\f07c"; }
+
+/* line 588, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-arrows-v:before {
+  content: "\f07d"; }
+
+/* line 591, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-arrows-h:before {
+  content: "\f07e"; }
+
+/* line 594, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-bar-chart-o:before {
+  content: "\f080"; }
+
+/* line 597, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-twitter-square:before {
+  content: "\f081"; }
+
+/* line 600, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-facebook-square:before {
+  content: "\f082"; }
+
+/* line 603, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-camera-retro:before {
+  content: "\f083"; }
+
+/* line 606, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-key:before {
+  content: "\f084"; }
+
+/* line 610, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-gears:before, .fa-cogs:before {
+  content: "\f085"; }
+
+/* line 613, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-comments:before {
+  content: "\f086"; }
+
+/* line 616, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-thumbs-o-up:before {
+  content: "\f087"; }
+
+/* line 619, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-thumbs-o-down:before {
+  content: "\f088"; }
+
+/* line 622, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-star-half:before {
+  content: "\f089"; }
+
+/* line 625, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-heart-o:before {
+  content: "\f08a"; }
+
+/* line 628, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-sign-out:before {
+  content: "\f08b"; }
+
+/* line 631, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-linkedin-square:before {
+  content: "\f08c"; }
+
+/* line 634, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-thumb-tack:before {
+  content: "\f08d"; }
+
+/* line 637, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-external-link:before {
+  content: "\f08e"; }
+
+/* line 640, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-sign-in:before {
+  content: "\f090"; }
+
+/* line 643, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-trophy:before {
+  content: "\f091"; }
+
+/* line 646, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-github-square:before {
+  content: "\f092"; }
+
+/* line 649, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-upload:before {
+  content: "\f093"; }
+
+/* line 652, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-lemon-o:before {
+  content: "\f094"; }
+
+/* line 655, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-phone:before {
+  content: "\f095"; }
+
+/* line 658, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-square-o:before {
+  content: "\f096"; }
+
+/* line 661, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-bookmark-o:before {
+  content: "\f097"; }
+
+/* line 664, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-phone-square:before {
+  content: "\f098"; }
+
+/* line 667, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-twitter:before {
+  content: "\f099"; }
+
+/* line 670, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-facebook:before {
+  content: "\f09a"; }
+
+/* line 673, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-github:before {
+  content: "\f09b"; }
+
+/* line 676, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-unlock:before {
+  content: "\f09c"; }
+
+/* line 679, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-credit-card:before {
+  content: "\f09d"; }
+
+/* line 682, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-rss:before {
+  content: "\f09e"; }
+
+/* line 685, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-hdd-o:before {
+  content: "\f0a0"; }
+
+/* line 688, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-bullhorn:before {
+  content: "\f0a1"; }
+
+/* line 691, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-bell:before {
+  content: "\f0f3"; }
+
+/* line 694, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-certificate:before {
+  content: "\f0a3"; }
+
+/* line 697, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-hand-o-right:before {
+  content: "\f0a4"; }
+
+/* line 700, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-hand-o-left:before {
+  content: "\f0a5"; }
+
+/* line 703, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-hand-o-up:before {
+  content: "\f0a6"; }
+
+/* line 706, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-hand-o-down:before {
+  content: "\f0a7"; }
+
+/* line 709, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-arrow-circle-left:before {
+  content: "\f0a8"; }
+
+/* line 712, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-arrow-circle-right:before {
+  content: "\f0a9"; }
+
+/* line 715, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-arrow-circle-up:before {
+  content: "\f0aa"; }
+
+/* line 718, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-arrow-circle-down:before {
+  content: "\f0ab"; }
+
+/* line 721, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-globe:before {
+  content: "\f0ac"; }
+
+/* line 724, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-wrench:before {
+  content: "\f0ad"; }
+
+/* line 727, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-tasks:before {
+  content: "\f0ae"; }
+
+/* line 730, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-filter:before {
+  content: "\f0b0"; }
+
+/* line 733, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-briefcase:before {
+  content: "\f0b1"; }
+
+/* line 736, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-arrows-alt:before {
+  content: "\f0b2"; }
+
+/* line 740, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-group:before, .fa-users:before {
+  content: "\f0c0"; }
+
+/* line 744, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-chain:before, .fa-link:before {
+  content: "\f0c1"; }
+
+/* line 747, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-cloud:before {
+  content: "\f0c2"; }
+
+/* line 750, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-flask:before {
+  content: "\f0c3"; }
+
+/* line 754, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-cut:before, .fa-scissors:before {
+  content: "\f0c4"; }
+
+/* line 758, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-copy:before, .fa-files-o:before {
+  content: "\f0c5"; }
+
+/* line 761, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-paperclip:before {
+  content: "\f0c6"; }
+
+/* line 765, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-save:before, .fa-floppy-o:before {
+  content: "\f0c7"; }
+
+/* line 768, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-square:before {
+  content: "\f0c8"; }
+
+/* line 771, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-bars:before {
+  content: "\f0c9"; }
+
+/* line 774, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-list-ul:before {
+  content: "\f0ca"; }
+
+/* line 777, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-list-ol:before {
+  content: "\f0cb"; }
+
+/* line 780, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-strikethrough:before {
+  content: "\f0cc"; }
+
+/* line 783, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-underline:before {
+  content: "\f0cd"; }
+
+/* line 786, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-table:before {
+  content: "\f0ce"; }
+
+/* line 789, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-magic:before {
+  content: "\f0d0"; }
+
+/* line 792, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-truck:before {
+  content: "\f0d1"; }
+
+/* line 795, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-pinterest:before {
+  content: "\f0d2"; }
+
+/* line 798, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-pinterest-square:before {
+  content: "\f0d3"; }
+
+/* line 801, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-google-plus-square:before {
+  content: "\f0d4"; }
+
+/* line 804, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-google-plus:before {
+  content: "\f0d5"; }
+
+/* line 807, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-money:before {
+  content: "\f0d6"; }
+
+/* line 810, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-caret-down:before {
+  content: "\f0d7"; }
+
+/* line 813, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-caret-up:before {
+  content: "\f0d8"; }
+
+/* line 816, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-caret-left:before {
+  content: "\f0d9"; }
+
+/* line 819, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-caret-right:before {
+  content: "\f0da"; }
+
+/* line 822, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-columns:before {
+  content: "\f0db"; }
+
+/* line 826, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-unsorted:before, .fa-sort:before {
+  content: "\f0dc"; }
+
+/* line 830, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-sort-down:before, .fa-sort-asc:before {
+  content: "\f0dd"; }
+
+/* line 834, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-sort-up:before, .fa-sort-desc:before {
+  content: "\f0de"; }
+
+/* line 837, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-envelope:before {
+  content: "\f0e0"; }
+
+/* line 840, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-linkedin:before {
+  content: "\f0e1"; }
+
+/* line 844, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-rotate-left:before, .fa-undo:before {
+  content: "\f0e2"; }
+
+/* line 848, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-legal:before, .fa-gavel:before {
+  content: "\f0e3"; }
+
+/* line 852, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-dashboard:before, .fa-tachometer:before {
+  content: "\f0e4"; }
+
+/* line 855, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-comment-o:before {
+  content: "\f0e5"; }
+
+/* line 858, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-comments-o:before {
+  content: "\f0e6"; }
+
+/* line 862, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-flash:before, .fa-bolt:before {
+  content: "\f0e7"; }
+
+/* line 865, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-sitemap:before {
+  content: "\f0e8"; }
+
+/* line 868, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-umbrella:before {
+  content: "\f0e9"; }
+
+/* line 872, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-paste:before, .fa-clipboard:before {
+  content: "\f0ea"; }
+
+/* line 875, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-lightbulb-o:before {
+  content: "\f0eb"; }
+
+/* line 878, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-exchange:before {
+  content: "\f0ec"; }
+
+/* line 881, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-cloud-download:before {
+  content: "\f0ed"; }
+
+/* line 884, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-cloud-upload:before {
+  content: "\f0ee"; }
+
+/* line 887, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-user-md:before {
+  content: "\f0f0"; }
+
+/* line 890, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-stethoscope:before {
+  content: "\f0f1"; }
+
+/* line 893, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-suitcase:before {
+  content: "\f0f2"; }
+
+/* line 896, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-bell-o:before {
+  content: "\f0a2"; }
+
+/* line 899, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-coffee:before {
+  content: "\f0f4"; }
+
+/* line 902, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-cutlery:before {
+  content: "\f0f5"; }
+
+/* line 905, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-file-text-o:before {
+  content: "\f0f6"; }
+
+/* line 908, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-building-o:before {
+  content: "\f0f7"; }
+
+/* line 911, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-hospital-o:before {
+  content: "\f0f8"; }
+
+/* line 914, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-ambulance:before {
+  content: "\f0f9"; }
+
+/* line 917, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-medkit:before {
+  content: "\f0fa"; }
+
+/* line 920, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-fighter-jet:before {
+  content: "\f0fb"; }
+
+/* line 923, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-beer:before {
+  content: "\f0fc"; }
+
+/* line 926, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-h-square:before {
+  content: "\f0fd"; }
+
+/* line 929, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-plus-square:before {
+  content: "\f0fe"; }
+
+/* line 932, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-angle-double-left:before {
+  content: "\f100"; }
+
+/* line 935, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-angle-double-right:before {
+  content: "\f101"; }
+
+/* line 938, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-angle-double-up:before {
+  content: "\f102"; }
+
+/* line 941, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-angle-double-down:before {
+  content: "\f103"; }
+
+/* line 944, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-angle-left:before {
+  content: "\f104"; }
+
+/* line 947, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-angle-right:before {
+  content: "\f105"; }
+
+/* line 950, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-angle-up:before {
+  content: "\f106"; }
+
+/* line 953, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-angle-down:before {
+  content: "\f107"; }
+
+/* line 956, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-desktop:before {
+  content: "\f108"; }
+
+/* line 959, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-laptop:before {
+  content: "\f109"; }
+
+/* line 962, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-tablet:before {
+  content: "\f10a"; }
+
+/* line 966, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-mobile-phone:before, .fa-mobile:before {
+  content: "\f10b"; }
+
+/* line 969, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-circle-o:before {
+  content: "\f10c"; }
+
+/* line 972, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-quote-left:before {
+  content: "\f10d"; }
+
+/* line 975, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-quote-right:before {
+  content: "\f10e"; }
+
+/* line 978, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-spinner:before {
+  content: "\f110"; }
+
+/* line 981, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-circle:before {
+  content: "\f111"; }
+
+/* line 985, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-mail-reply:before, .fa-reply:before {
+  content: "\f112"; }
+
+/* line 988, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-github-alt:before {
+  content: "\f113"; }
+
+/* line 991, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-folder-o:before {
+  content: "\f114"; }
+
+/* line 994, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-folder-open-o:before {
+  content: "\f115"; }
+
+/* line 997, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-smile-o:before {
+  content: "\f118"; }
+
+/* line 1000, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-frown-o:before {
+  content: "\f119"; }
+
+/* line 1003, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-meh-o:before {
+  content: "\f11a"; }
+
+/* line 1006, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-gamepad:before {
+  content: "\f11b"; }
+
+/* line 1009, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-keyboard-o:before {
+  content: "\f11c"; }
+
+/* line 1012, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-flag-o:before {
+  content: "\f11d"; }
+
+/* line 1015, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-flag-checkered:before {
+  content: "\f11e"; }
+
+/* line 1018, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-terminal:before {
+  content: "\f120"; }
+
+/* line 1021, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-code:before {
+  content: "\f121"; }
+
+/* line 1024, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-reply-all:before {
+  content: "\f122"; }
+
+/* line 1027, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-mail-reply-all:before {
+  content: "\f122"; }
+
+/* line 1032, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-star-half-empty:before, .fa-star-half-full:before, .fa-star-half-o:before {
+  content: "\f123"; }
+
+/* line 1035, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-location-arrow:before {
+  content: "\f124"; }
+
+/* line 1038, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-crop:before {
+  content: "\f125"; }
+
+/* line 1041, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-code-fork:before {
+  content: "\f126"; }
+
+/* line 1045, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-unlink:before, .fa-chain-broken:before {
+  content: "\f127"; }
+
+/* line 1048, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-question:before {
+  content: "\f128"; }
+
+/* line 1051, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-info:before {
+  content: "\f129"; }
+
+/* line 1054, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-exclamation:before {
+  content: "\f12a"; }
+
+/* line 1057, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-superscript:before {
+  content: "\f12b"; }
+
+/* line 1060, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-subscript:before {
+  content: "\f12c"; }
+
+/* line 1063, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-eraser:before {
+  content: "\f12d"; }
+
+/* line 1066, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-puzzle-piece:before {
+  content: "\f12e"; }
+
+/* line 1069, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-microphone:before {
+  content: "\f130"; }
+
+/* line 1072, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-microphone-slash:before {
+  content: "\f131"; }
+
+/* line 1075, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-shield:before {
+  content: "\f132"; }
+
+/* line 1078, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-calendar-o:before {
+  content: "\f133"; }
+
+/* line 1081, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-fire-extinguisher:before {
+  content: "\f134"; }
+
+/* line 1084, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-rocket:before {
+  content: "\f135"; }
+
+/* line 1087, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-maxcdn:before {
+  content: "\f136"; }
+
+/* line 1090, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-chevron-circle-left:before {
+  content: "\f137"; }
+
+/* line 1093, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-chevron-circle-right:before {
+  content: "\f138"; }
+
+/* line 1096, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-chevron-circle-up:before {
+  content: "\f139"; }
+
+/* line 1099, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-chevron-circle-down:before {
+  content: "\f13a"; }
+
+/* line 1102, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-html5:before {
+  content: "\f13b"; }
+
+/* line 1105, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-css3:before {
+  content: "\f13c"; }
+
+/* line 1108, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-anchor:before {
+  content: "\f13d"; }
+
+/* line 1111, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-unlock-alt:before {
+  content: "\f13e"; }
+
+/* line 1114, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-bullseye:before {
+  content: "\f140"; }
+
+/* line 1117, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-ellipsis-h:before {
+  content: "\f141"; }
+
+/* line 1120, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-ellipsis-v:before {
+  content: "\f142"; }
+
+/* line 1123, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-rss-square:before {
+  content: "\f143"; }
+
+/* line 1126, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-play-circle:before {
+  content: "\f144"; }
+
+/* line 1129, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-ticket:before {
+  content: "\f145"; }
+
+/* line 1132, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-minus-square:before {
+  content: "\f146"; }
+
+/* line 1135, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-minus-square-o:before {
+  content: "\f147"; }
+
+/* line 1138, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-level-up:before {
+  content: "\f148"; }
+
+/* line 1141, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-level-down:before {
+  content: "\f149"; }
+
+/* line 1144, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-check-square:before {
+  content: "\f14a"; }
+
+/* line 1147, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-pencil-square:before {
+  content: "\f14b"; }
+
+/* line 1150, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-external-link-square:before {
+  content: "\f14c"; }
+
+/* line 1153, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-share-square:before {
+  content: "\f14d"; }
+
+/* line 1156, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-compass:before {
+  content: "\f14e"; }
+
+/* line 1160, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-toggle-down:before, .fa-caret-square-o-down:before {
+  content: "\f150"; }
+
+/* line 1164, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-toggle-up:before, .fa-caret-square-o-up:before {
+  content: "\f151"; }
+
+/* line 1168, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-toggle-right:before, .fa-caret-square-o-right:before {
+  content: "\f152"; }
+
+/* line 1172, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-euro:before, .fa-eur:before {
+  content: "\f153"; }
+
+/* line 1175, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-gbp:before {
+  content: "\f154"; }
+
+/* line 1179, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-dollar:before, .fa-usd:before {
+  content: "\f155"; }
+
+/* line 1183, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-rupee:before, .fa-inr:before {
+  content: "\f156"; }
+
+/* line 1189, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-cny:before, .fa-rmb:before, .fa-yen:before, .fa-jpy:before {
+  content: "\f157"; }
+
+/* line 1194, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-ruble:before, .fa-rouble:before, .fa-rub:before {
+  content: "\f158"; }
+
+/* line 1198, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-won:before, .fa-krw:before {
+  content: "\f159"; }
+
+/* line 1202, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-bitcoin:before, .fa-btc:before {
+  content: "\f15a"; }
+
+/* line 1205, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-file:before {
+  content: "\f15b"; }
+
+/* line 1208, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-file-text:before {
+  content: "\f15c"; }
+
+/* line 1211, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-sort-alpha-asc:before {
+  content: "\f15d"; }
+
+/* line 1214, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-sort-alpha-desc:before {
+  content: "\f15e"; }
+
+/* line 1217, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-sort-amount-asc:before {
+  content: "\f160"; }
+
+/* line 1220, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-sort-amount-desc:before {
+  content: "\f161"; }
+
+/* line 1223, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-sort-numeric-asc:before {
+  content: "\f162"; }
+
+/* line 1226, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-sort-numeric-desc:before {
+  content: "\f163"; }
+
+/* line 1229, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-thumbs-up:before {
+  content: "\f164"; }
+
+/* line 1232, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-thumbs-down:before {
+  content: "\f165"; }
+
+/* line 1235, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-youtube-square:before {
+  content: "\f166"; }
+
+/* line 1238, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-youtube:before {
+  content: "\f167"; }
+
+/* line 1241, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-xing:before {
+  content: "\f168"; }
+
+/* line 1244, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-xing-square:before {
+  content: "\f169"; }
+
+/* line 1247, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-youtube-play:before {
+  content: "\f16a"; }
+
+/* line 1250, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-dropbox:before {
+  content: "\f16b"; }
+
+/* line 1253, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-stack-overflow:before {
+  content: "\f16c"; }
+
+/* line 1256, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-instagram:before {
+  content: "\f16d"; }
+
+/* line 1259, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-flickr:before {
+  content: "\f16e"; }
+
+/* line 1262, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-adn:before {
+  content: "\f170"; }
+
+/* line 1265, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-bitbucket:before {
+  content: "\f171"; }
+
+/* line 1268, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-bitbucket-square:before {
+  content: "\f172"; }
+
+/* line 1271, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-tumblr:before {
+  content: "\f173"; }
+
+/* line 1274, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-tumblr-square:before {
+  content: "\f174"; }
+
+/* line 1277, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-long-arrow-down:before {
+  content: "\f175"; }
+
+/* line 1280, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-long-arrow-up:before {
+  content: "\f176"; }
+
+/* line 1283, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-long-arrow-left:before {
+  content: "\f177"; }
+
+/* line 1286, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-long-arrow-right:before {
+  content: "\f178"; }
+
+/* line 1289, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-apple:before {
+  content: "\f179"; }
+
+/* line 1292, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-windows:before {
+  content: "\f17a"; }
+
+/* line 1295, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-android:before {
+  content: "\f17b"; }
+
+/* line 1298, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-linux:before {
+  content: "\f17c"; }
+
+/* line 1301, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-dribbble:before {
+  content: "\f17d"; }
+
+/* line 1304, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-skype:before {
+  content: "\f17e"; }
+
+/* line 1307, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-foursquare:before {
+  content: "\f180"; }
+
+/* line 1310, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-trello:before {
+  content: "\f181"; }
+
+/* line 1313, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-female:before {
+  content: "\f182"; }
+
+/* line 1316, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-male:before {
+  content: "\f183"; }
+
+/* line 1319, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-gittip:before {
+  content: "\f184"; }
+
+/* line 1322, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-sun-o:before {
+  content: "\f185"; }
+
+/* line 1325, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-moon-o:before {
+  content: "\f186"; }
+
+/* line 1328, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-archive:before {
+  content: "\f187"; }
+
+/* line 1331, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-bug:before {
+  content: "\f188"; }
+
+/* line 1334, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-vk:before {
+  content: "\f189"; }
+
+/* line 1337, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-weibo:before {
+  content: "\f18a"; }
+
+/* line 1340, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-renren:before {
+  content: "\f18b"; }
+
+/* line 1343, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-pagelines:before {
+  content: "\f18c"; }
+
+/* line 1346, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-stack-exchange:before {
+  content: "\f18d"; }
+
+/* line 1349, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-arrow-circle-o-right:before {
+  content: "\f18e"; }
+
+/* line 1352, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-arrow-circle-o-left:before {
+  content: "\f190"; }
+
+/* line 1356, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-toggle-left:before, .fa-caret-square-o-left:before {
+  content: "\f191"; }
+
+/* line 1359, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-dot-circle-o:before {
+  content: "\f192"; }
+
+/* line 1362, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-wheelchair:before {
+  content: "\f193"; }
+
+/* line 1365, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-vimeo-square:before {
+  content: "\f194"; }
+
+/* line 1369, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-turkish-lira:before, .fa-try:before {
+  content: "\f195"; }
+
+/* line 1372, /home/angga/other/rumahtotok/static_files/css/font-awesome.css */
+.fa-plus-square-o:before {
+  content: "\f196"; }
+
+@font-face {
+  font-family: 'Raleway-Regular';
+  src: url('/static/fonts/raleway/Raleway-Regular.ttf?ad41835e889b'); }
+
+@font-face {
+  font-family: 'SourceSansPro-Regular';
+  src: url('/static/fonts/source-sans-pro/SourceSansPro-Regular.ttf'); }
+
+/* line 12, /home/angga/other/rumahtotok/static_files/css/style.scss */
+h4, h5, h6, h1, h2, h3 {
+  margin-top: 0; }
+
+/* line 13, /home/angga/other/rumahtotok/static_files/css/style.scss */
+ul, ol {
+  margin: 0; }
+
+/* line 14, /home/angga/other/rumahtotok/static_files/css/style.scss */
+p {
+  margin: 0;
+  font-family: 'SourceSansPro-Regular', sans-serif; }
+
+/* line 16, /home/angga/other/rumahtotok/static_files/css/style.scss */
+html, body {
+  font-size: 100%;
+  background: #2b333d;
+  margin: 0px;
+  font-family: 'SourceSansPro-Regular', sans-serif; }
+  /* line 22, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  html a, body a {
+    text-decoration: none; }
+
+/* line 28, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.clear {
+  clear: both; }
+
+/* line 32, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.right {
+  float: right; }
+
+/* line 36, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.button {
+  color: #fff;
+  background-color: #ef553a;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 5px 10px;
+  line-height: 1.42857143;
+  font-size: 15px; }
+
+/* line 47, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.button:hover {
+  background: #DE4D36; }
+
+/* line 51, /home/angga/other/rumahtotok/static_files/css/style.scss */
+hr {
+  border: 1px solid #e0e0e0; }
+
+/* line 55, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.dropdown {
+  position: relative;
+  display: inline-block; }
+  /* line 59, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  .dropdown .box {
+    color: #fff;
+    background-color: #ef553a;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 5px 12px; }
+  /* line 68, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  .dropdown .dropdown-content {
+    margin-top: 1px;
+    display: none;
+    position: absolute;
+    min-width: 150px;
+    padding: 4px 0px;
+    right: 0px; }
+    /* line 76, /home/angga/other/rumahtotok/static_files/css/style.scss */
+    .dropdown .dropdown-content a {
+      display: block;
+      padding: 5px 10px;
+      margin: 5px 0px;
+      text-align: left;
+      color: #fff;
+      font-size: 15px; }
+    /* line 85, /home/angga/other/rumahtotok/static_files/css/style.scss */
+    .dropdown .dropdown-content a:hover {
+      background: #DE4D36; }
+
+/* line 91, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.dropdown:hover .dropdown-content {
+  display: block; }
+
+/* line 95, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.nav-top {
+  font-family: 'Raleway-Regular';
+  background: #06d995;
+  height: 47px; }
+  /* line 100, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  .nav-top h2 {
+    padding: 10px 15px;
+    color: #ffffff; }
+
+/* line 106, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.nav-left {
+  min-height: 600px;
+  padding: 0px; }
+  /* line 109, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  .nav-left ul {
+    width: 100%;
+    margin: 2em 0 0 0;
+    list-style: none;
+    padding-left: 0px; }
+    /* line 115, /home/angga/other/rumahtotok/static_files/css/style.scss */
+    .nav-left ul li {
+      position: relative;
+      display: block; }
+      /* line 119, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-left ul li a {
+        color: #c5d0de;
+        font-size: 15px;
+        position: relative;
+        display: block;
+        padding: 10px 15px; }
+      /* line 127, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-left ul li a:hover {
+        background: #24272d; }
+
+/* line 134, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.nav-right {
+  min-height: 700;
+  background: #f2f4f8; }
+  /* line 138, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  .nav-right .title-content {
+    margin: 20px 0px 20px 20px;
+    padding: 10px 10px 0px 10px; }
+    /* line 142, /home/angga/other/rumahtotok/static_files/css/style.scss */
+    .nav-right .title-content .title {
+      font-size: 27px; }
+  /* line 147, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  .nav-right .message {
+    display: block;
+    margin-bottom: 15px;
+    color: #7cb342;
+    text-align: center;
+    font-size: 15px; }
+  /* line 155, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  .nav-right .content {
+    margin: 20px 0px 20px 20px;
+    padding: 30px;
+    background: #fff; }
+    /* line 160, /home/angga/other/rumahtotok/static_files/css/style.scss */
+    .nav-right .content .data-table {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      border-collapse: collapse;
+      width: 100%;
+      color: gray; }
+      /* line 168, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .data-table .id {
+        font-weight: bold;
+        color: #ef553a; }
+      /* line 173, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .data-table thead {
+        line-height: 21px;
+        border-bottom: 1px solid gray;
+        text-align: left; }
+      /* line 179, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .data-table th, .nav-right .content .data-table td {
+        padding: 13px 15px; }
+      /* line 183, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .data-table .add-row {
+        line-height: 21px;
+        border-top: 1px solid gray;
+        text-align: left; }
+    /* line 191, /home/angga/other/rumahtotok/static_files/css/style.scss */
+    .nav-right .content .data-detail {
+      margin-top: 10px;
+      margin-bottom: 30px;
+      font-size: 15px;
+      border-collapse: collapse;
+      color: gray; }
+      /* line 198, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .data-detail th, .nav-right .content .data-detail td {
+        padding: 13px 15px; }
+      /* line 202, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .data-detail th {
+        text-align: left;
+        font-weight: 400;
+        width: 50%; }
+      /* line 208, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .data-detail .colon {
+        padding: 0px; }
+    /* line 214, /home/angga/other/rumahtotok/static_files/css/style.scss */
+    .nav-right .content .form-table {
+      font-size: 14px;
+      margin-top: 0px;
+      border-collapse: collapse;
+      width: 100%;
+      color: #000000; }
+      /* line 221, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .form-table th {
+        padding: 12px 15px 13px 15px;
+        vertical-align: middle;
+        text-align: left;
+        font-weight: 300; }
+      /* line 229, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .form-table input, .nav-right .content .form-table textarea {
+        border: 1px solid #e0e0e0;
+        padding: 10px 8px;
+        color: #616161;
+        background: #fff;
+        box-shadow: none !important;
+        width: 80%;
+        border-radius: 4px;
+        margin-bottom: 15px;
+        font-family: 'Roboto', sans-serif; }
+      /* line 241, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .form-table .required {
+        color: gray; }
+      /* line 245, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .form-table .errorlist {
+        list-style: none;
+        background: #fde0dc;
+        border: 1px solid #f69988 !important;
+        width: 80%;
+        padding-left: 10px;
+        margin-top: -10px;
+        margin-bottom: 15px;
+        color: gray;
+        border-radius: 4px; }
+        /* line 256, /home/angga/other/rumahtotok/static_files/css/style.scss */
+        .nav-right .content .form-table .errorlist li {
+          padding: 10px;
+          display: block; }
+      /* line 262, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .form-table .required {
+        margin-left: 20px; }
+  /* line 269, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  .nav-right .content-form {
+    background: #f2f4f8; }
+  /* line 273, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  .nav-right .copy {
+    color: gray;
+    margin: 20px 0px 20px 20px;
+    background: #fff;
+    text-align: center;
+    padding: 1.5em 0;
+    font-size: 14px; }
+
+/* line 284, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.round {
+  float: left;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin-bottom: 15px;
+  margin-right: 30px;
+  margin-left: 15px; }
+
+/* line 294, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.customer-name {
+  margin-top: 7px;
+  margin-bottom: 5px;
+  font-family: 'Raleway-Regular'; }
+
+/* line 300, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.detail-right {
+  float: right;
+  margin-top: 25px;
+  margin-right: 20px; }
+
+/* line 306, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.title-section {
+  font-family: 'Raleway-Regular';
+  margin-top: 25px;
+  margin-bottom: 0px;
+  font-size: 20px;
+  color: #ef553a;
+  margin-left: 15px; }

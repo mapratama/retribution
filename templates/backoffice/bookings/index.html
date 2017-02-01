@@ -1,0 +1,65 @@
+{% extends 'backoffice/base.html' %}
+{% load staticfiles %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="content">
+<form class="search-form" action='' method='GET' id="options__content">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td class="tdinput" colspan="2">
+            <input type="text" name="query" {% if query %}value = '{{ query }}'{% endif %}
+                placeholder="Search by booking code, therapist or customer">
+            </td>
+        </tr>
+        <tr><td class="first">Status </td><td>{{ form.status }}</td></tr>
+        <tr><td class="first">Review Status</td><td>{{ form.review_status }}</td></tr>
+        <tr><td class="first">Store </td> <td>{{ form.store }} </td> </tr>
+    </table>
+</form>
+<div>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>User</th>
+            <th>Date</th>
+            <th>Therapist</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    {% for booking in bookings %}
+    <tr>
+        <td><a class="id" href="{% url 'backoffice:bookings:detail' booking.id %}">{{ booking.code }}</a></td>
+        <td>{{ booking.order.user }}</td>
+        <td>{{ booking.date|date:"d, M Y" }}</td>
+        <td>{{ booking.therapist.user.name }}</td>
+        <td>{{ booking.get_status_display }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</div>
+
+{% if paginator.next or paginator.previous %}
+<div class="pagination">
+    {% if paginator.previous %}
+        <a class="prev" href="?page={{ paginator.previous }}{{ query_parameters }}" class="prev">‹ Prev </a>
+    {% endif %}
+    {% if paginator.next %}
+        <a class="next" href="?page={{ paginator.next }}{{ query_parameters }}"  class="next">Next ›</a>
+    {% endif %}
+</div>
+{% endif %}
+<div class="clear"></div>
+</div>
+{% endblock %}
+
+{% block extra_javascript %}
+    <script>
+        $(document).on('click', '#id_status, #id_review_status, #id_store', function(event) {
+            $('.search-form').submit()
+        });
+    </script>
+{% endblock %}

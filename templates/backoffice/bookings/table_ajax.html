@@ -1,0 +1,20 @@
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>User</th>
+            <th>Time</th>
+            <th>Therapist</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    {% for booking in bookings %}
+    <tr>
+        <td><a class="id" href="{% url 'backoffice:bookings:detail' booking.id %}">{{ booking.code }}</a></td>
+        <td>{{ booking.order.user }}</td>
+        <td>{{ booking.time|date:"d, M Y H:i" }}</td>
+        <td>{{ booking.therapist }}</td>
+        <td>{{ booking.get_status_display }}</td>
+    </tr>
+    {% endfor %}
+</table>

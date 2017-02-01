@@ -1,0 +1,70 @@
+{% extends 'backoffice/base.html' %}
+{% load staticfiles %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="content">
+<form class="search-form" action='' method='GET' id="options__content">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td class="button_add">
+                <a class="button" href="{% url 'backoffice:orders:add' %}"><i class="fa fa-plus-circle white fa-fw"></i> Add</a></td>
+            <td class="tdinput" colspan="2">
+                <input type="text" name="query" {% if query %}value = '{{ query }}'{% endif %}
+                placeholder="Search by order code or user name and user mobile number">
+            </td>
+        </tr>
+        <tr><td></td><td class="first">Status </td> <td>{{ form.status }}</td></tr>
+        <tr><td></td><td class="first">Payment Status</td> <td>{{ form.payment_status }}</td>
+        </tr>
+    </table>
+</form>
+
+<div class="table-wrapper">
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>User</th>
+            <th>Created Date</th>
+            <th>Booking</th>
+            <th>Status</th>
+            <th>Payment</th>
+        </tr>
+    </thead>
+    {% for order in orders %}
+    <tr>
+        <td><a class="id" href="{% url 'backoffice:orders:detail' order.id %}"> {{ order.code }} </a></td>
+        <td><a class="id" href="{% url 'backoffice:customers:detail' order.user_id %}"> {{ order.user.name }} </a></td>
+        <td>{{ order.created|date:'d M Y, H:i'  }}</td>
+        <td>{{ order.total_booking|floatformat:0 }} of {{ order.service.max_booking|floatformat:0 }} </td>
+        <td>{{ order.get_status_display }}</td>
+        <td>{% if order.completed_paid %} Paid {% else %} Unpaid {% endif %}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% if paginator.next or paginator.previous %}
+<div class="pagination">
+    {% if paginator.previous %}
+        <a class="prev" href="?page={{ paginator.previous }}{{ query_parameters }}" class="prev">‹ Prev </a>
+    {% endif %}
+    {% if paginator.next %}
+        <a class="next" href="?page={{ paginator.next }}{{ query_parameters }}"  class="next">Next ›</a>
+    {% endif %}
+</div>
+{% endif %}
+<div class="clear"></div>
+</div>
+
+</div>
+{% endblock %}
+
+{% block extra_javascript %}
+    <script>
+        $(document).on('click', '#id_status, #id_payment_status', function(event) {
+            $('.search-form').submit()
+        });
+
+    </script>
+{% endblock %}

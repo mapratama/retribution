@@ -1,0 +1,1 @@
+/home/angga/other/rumahtotok/static_files/bower/bower_components/typeahead.js/test/bloodhound/lru_cache_spec.js

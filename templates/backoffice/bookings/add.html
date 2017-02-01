@@ -1,0 +1,131 @@
+{% extends 'backoffice/base.html' %}
+{% load staticfiles %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="content content-form">
+<div>
+
+    {{ form.non_field_errors }}
+    <form class="form" method="{{ method|default:'POST'}}" action="{{ action }}">
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        <table class="form-table">
+            <tbody>
+                <tr>
+                    <th class="col-2-12">{{ form.date.label_tag }}</th>
+                    <td class="col-10-12">
+                        {{ form.date }}
+                        {{ form.date.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-2-12">{{ form.store.label_tag }}</th>
+                    <td class="col-10-12">
+                        {{ form.store }}
+                        {{ form.store.errors}}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-2-12">{{ form.prepare_duration.label_tag }}</th>
+                    <td class="col-10-12">
+                        {{ form.prepare_duration }}
+                        {{ form.prepare_duration.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-2-12">{{ form.therapist.label_tag }}</th>
+                    <td class="col-10-12">
+                        <div class="therapist">{{ form.therapist }}</div>
+                        {{ form.therapist.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-2-12">{{ form.notes.label_tag }}</th>
+                    <td class="col-10-12">
+                        {{ form.notes }}
+                        {{ form.notes.errors }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <hr></hr>
+        
+        <table class="form-table">
+            <tbody>
+                <tr>
+                <th class="col-2-12"></th>
+                <td class="col-10-12">
+                <button class="button">
+                    <i class="fa fa-floppy-o white fa-fw"></i> {{ button_text|default:'Save' }}</button>
+                </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </form>
+
+</div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bower/bower_components/datetimepicker/jquery.datetimepicker.css' %}" />
+{% endblock %}
+
+{% block extra_javascript %}
+    <script src="{% static 'bower/bower_components/datetimepicker/build/jquery.datetimepicker.full.js' %}"></script>
+    <script>
+        var today = new Date();
+        $('#id_date').datetimepicker({
+            timepicker:false,
+            format:'Y-m-d',
+            minDate : today
+        });
+        
+        $(document).on('change exit', '#id_store', function(event) {
+            event.preventDefault();
+            var $therapist = $('.therapist');
+            $therapist.fadeOut(300);
+            
+            $.ajax({
+                type: "GET",
+                url: "{% url 'backoffice:stores:get_therapist' %}",
+                data: $('.form').serialize(),
+                success: function(response) {
+                    $therapist.html(response);
+                },
+                error: function(response) {
+                    $('.form').submit()
+                },
+                complete: function(response) {
+                    $therapist.fadeIn(300);
+                }
+            });
+        });
+
+        $( document ).ready(function() {
+            console.log( "ready!" );
+            var $therapist = $('.therapist');
+            $therapist.fadeOut(300);
+            $.ajax({
+                type: "GET",
+                url: "{% url 'backoffice:stores:get_therapist' %}",
+                data: $('.form').serialize(),
+                success: function(response) {
+                    $therapist.html(response);
+                },
+                error: function(response) {
+                    // $('.form').submit()
+                },
+                complete: function(response) {
+                    $therapist.fadeIn(300);
+                }
+            });
+        });
+
+    </script>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'backoffice/base.html' %}
+{% load staticfiles %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="table-wrapper">
+    <table class="data-table">
+        <tr><td><a class="id" href="{% url 'backoffice:reports:orders' %}"> Orders Report </a></td></tr>
+        <tr><td><a class="id" href="{% url 'backoffice:reports:bookings' %}"> Bookings Report </a></td></tr>
+        <tr><td><a class="id" href="{% url 'backoffice:reports:payments' %}"> Payments Report </a></td></tr>
+    </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,70 @@
+[
+  {
+    "pk": 1,
+    "model": "treatments.Treatment", 
+    "fields": {
+      "name": "Totok", 
+      "is_active": "True"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "treatments.Treatment", 
+    "fields": {
+      "name": "Massage", 
+      "is_active": "True"
+    }
+  },
+  {
+    "pk": 21,
+    "model": "services.Service", 
+    "fields": {
+      "name": "Facial 1x", 
+      "is_active": "True", 
+      "time_needed": 60,
+      "price": 100000,
+      "number_of_visit": 1,
+      "number_of_people": 1,
+      "treatment": 1
+    }
+  },
+  {
+    "pk": 22,
+    "model": "services.Service", 
+    "fields": {
+      "name": "Facial 2x", 
+      "is_active": "True", 
+      "time_needed": 60,
+      "price": 200000,
+      "number_of_visit": 2,
+      "number_of_people": 1,
+      "treatment": 1
+    }
+  },
+  {
+    "pk": 23,
+    "model": "services.Service", 
+    "fields": {
+      "name": "Facial 3x", 
+      "is_active": "True", 
+      "time_needed": 60,
+      "price": 200000,
+      "number_of_visit": 3,
+      "number_of_people": 1,
+      "treatment": 1
+    }
+  },
+  {
+    "pk": 24,
+    "model": "services.Service", 
+    "fields": {
+      "name": "Massage 1x", 
+      "is_active": "True", 
+      "time_needed": 60,
+      "price": 100000,
+      "number_of_visit": 1,
+      "number_of_people": 1,
+      "treatment": 2
+    }
+  }
+]

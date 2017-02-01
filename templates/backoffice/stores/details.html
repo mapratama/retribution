@@ -1,0 +1,58 @@
+{% extends 'backoffice/base.html' %}
+{% load staticfiles %}
+{% block title %}{{ tittle }} {% endblock %}
+
+{% block content %}
+<div class="content">
+	{% comment %} 	<div class="dropdown detail-right">
+	    	<span class="box"><i class="fa fa-list white fa-fw"></i></span>
+	    	<div class="dropdown-content box">
+	        	<a href="{% url 'backoffice:stores:edit' store.id %}"><i class="fa fa-pencil white fa-fw"></i> Edit</a>
+	        	<a href="{% url 'backoffice:tasks:all_tasks_today' store.id %}"><i class="fa fa-thumb-tack white fa-fw"></i>All Tasks Today</a>
+	    	</div>
+		</div>
+	{% endcomment %}
+
+ 	<a class="button detail-right" href="{% url 'backoffice:stores:edit' store.id %}"><i class="fa fa-pencil white fa-fw"></i> Edit</a>
+
+	<img class="round" src="{% if store.photo %}{{store.photo.url}} {% else %} {% static 'img/icon/user_icon.jpg' %} {% endif %}">
+
+	<h2 class="customer-name"> {{ store.name }} </h2> 
+	<p>{% if store.is_active %}Active{% else %}Non Active{% endif %}</p>
+
+	<div class="clear"> </div>
+
+	<hr></hr>
+	<table class="data-detail">
+		<tr><th>Phone</th> <td class="colon">:</td> <td> {{ store.phone }} </td></tr>
+		<tr><th>BBM</th> <td class="colon">:</td> <td> {{ store.BBM_pin }} </td></tr>
+		<tr><th>Address</th> <td class="colon">:</td> <td> {{ store.address }} </td></tr>
+		<tr><th>Max Male Booking</th> <td class="colon">:</td> <td> {{ store.max_male_booking }} </td></tr>
+		<tr><th>Max Female Booking</th> <td class="colon">:</td> <td> {{ store.max_female_booking }} </td></tr>
+		<tr><th>Latitude</th> <td class="colon">:</td> <td> {{ store.lat }} </td></tr>
+		<tr><th>Longitude</th> <td class="colon">:</td> <td>{{ store.long }}</td></tr>
+	</table>
+
+	<div class="clear"> </div>
+	<h3 class="title-section"> Therapists </h3>
+	<table class="data-table">
+		<thead>
+	        <tr>
+	            <th>Code</th>
+		        <th>Name</th>
+		        <th>Mobile</th>
+	        </tr>
+    	</thead>
+    	{% for therapist in therapists %}
+		<tr>
+		    <td><a class="id" href="{% url 'backoffice:therapists:detail' therapist.id %}"> {{ therapist.user.code }} </a></td>
+		    <td>{{ therapist.user.name }}</td>
+		    <td>{{ therapist.user.mobile_number }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	
+</div>
+
+<div class="clear"> </div>
+{% endblock %}

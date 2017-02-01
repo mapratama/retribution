@@ -1,0 +1,282 @@
+@font-face {
+  font-family: 'Raleway-Regular';
+  src: url('/static/fonts/raleway/Raleway-Regular.ttf?ad41835e889b'); }
+
+@font-face {
+  font-family: 'SourceSansPro-Regular';
+  src: url('/static/fonts/source-sans-pro/SourceSansPro-Regular.ttf'); }
+
+/* line 12, /home/angga/other/rumahtotok/static_files/css/style.scss */
+h4, h5, h6, h1, h2, h3 {
+  margin-top: 0; }
+
+/* line 13, /home/angga/other/rumahtotok/static_files/css/style.scss */
+ul, ol {
+  margin: 0; }
+
+/* line 14, /home/angga/other/rumahtotok/static_files/css/style.scss */
+p {
+  margin: 0;
+  font-family: 'SourceSansPro-Regular', sans-serif; }
+
+/* line 16, /home/angga/other/rumahtotok/static_files/css/style.scss */
+html, body {
+  font-size: 100%;
+  background: #2b333d;
+  margin: 0px;
+  font-family: 'SourceSansPro-Regular', sans-serif; }
+  /* line 22, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  html a, body a {
+    text-decoration: none; }
+
+/* line 28, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.clear {
+  clear: both; }
+
+/* line 32, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.right {
+  float: right; }
+
+/* line 36, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.button {
+  color: #fff;
+  background-color: #ef553a;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 5px 10px;
+  line-height: 1.42857143;
+  font-size: 15px; }
+
+/* line 47, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.button:hover {
+  background: #DE4D36; }
+
+/* line 51, /home/angga/other/rumahtotok/static_files/css/style.scss */
+hr {
+  border: 1px solid #e0e0e0; }
+
+/* line 55, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.dropdown {
+  position: relative;
+  display: inline-block; }
+  /* line 59, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  .dropdown .box {
+    color: #fff;
+    background-color: #ef553a;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 5px 12px; }
+  /* line 68, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  .dropdown .dropdown-content {
+    margin-top: 1px;
+    display: none;
+    position: absolute;
+    min-width: auto;
+    padding: 4px 0px;
+    right: 0px; }
+    /* line 76, /home/angga/other/rumahtotok/static_files/css/style.scss */
+    .dropdown .dropdown-content a {
+      display: block;
+      padding: 3px 10px;
+      text-align: left;
+      color: #fff;
+      font-size: 15px; }
+    /* line 84, /home/angga/other/rumahtotok/static_files/css/style.scss */
+    .dropdown .dropdown-content a:hover {
+      background: #DE4D36; }
+
+/* line 90, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.dropdown:hover .dropdown-content {
+  display: block; }
+
+/* line 94, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.box:hover {
+  background: #DE4D36; }
+
+/* line 98, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.nav-top {
+  font-family: 'Raleway-Regular';
+  background: #06d995;
+  height: 47px; }
+  /* line 103, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  .nav-top h2 {
+    padding: 10px 15px;
+    color: #ffffff; }
+
+/* line 109, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.nav-left {
+  min-height: 600px;
+  padding: 0px; }
+  /* line 112, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  .nav-left ul {
+    width: 100%;
+    margin: 2em 0 0 0;
+    list-style: none;
+    padding-left: 0px; }
+    /* line 118, /home/angga/other/rumahtotok/static_files/css/style.scss */
+    .nav-left ul li {
+      position: relative;
+      display: block; }
+      /* line 122, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-left ul li a {
+        color: #c5d0de;
+        font-size: 15px;
+        position: relative;
+        display: block;
+        padding: 10px 15px; }
+      /* line 130, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-left ul li a:hover {
+        background: #24272d; }
+
+/* line 137, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.nav-right {
+  min-height: 700;
+  background: #f2f4f8; }
+  /* line 141, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  .nav-right .title-content {
+    margin: 20px 0px 20px 20px;
+    padding: 10px 10px 0px 10px; }
+    /* line 145, /home/angga/other/rumahtotok/static_files/css/style.scss */
+    .nav-right .title-content .title {
+      font-size: 27px; }
+  /* line 150, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  .nav-right .message {
+    display: block;
+    margin-bottom: 15px;
+    color: #7cb342;
+    text-align: center;
+    font-size: 15px; }
+  /* line 158, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  .nav-right .content {
+    margin: 20px 0px 20px 20px;
+    padding: 30px;
+    background: #fff; }
+    /* line 163, /home/angga/other/rumahtotok/static_files/css/style.scss */
+    .nav-right .content .data-table {
+      margin-top: 10px;
+      font-size: 15px;
+      border-collapse: collapse;
+      width: 100%;
+      color: gray; }
+      /* line 170, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .data-table .id {
+        font-weight: bold;
+        color: #ef553a; }
+      /* line 175, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .data-table thead {
+        line-height: 21px;
+        border-bottom: 1px solid gray;
+        text-align: left; }
+      /* line 181, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .data-table th, .nav-right .content .data-table td {
+        padding: 13px 15px; }
+      /* line 185, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .data-table tr:hover td {
+        background-color: #dff0d8; }
+    /* line 190, /home/angga/other/rumahtotok/static_files/css/style.scss */
+    .nav-right .content .data-detail {
+      margin-top: 10px;
+      margin-bottom: 20px;
+      font-size: 15px;
+      border-collapse: collapse;
+      color: gray; }
+      /* line 197, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .data-detail th, .nav-right .content .data-detail td {
+        padding: 13px 15px; }
+      /* line 201, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .data-detail th {
+        text-align: left;
+        font-weight: 400;
+        width: 50%; }
+      /* line 207, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .data-detail .colon {
+        padding: 0px; }
+    /* line 213, /home/angga/other/rumahtotok/static_files/css/style.scss */
+    .nav-right .content .form-table {
+      font-size: 14px;
+      margin-top: 0px;
+      border-collapse: collapse;
+      width: 100%;
+      color: #000000; }
+      /* line 220, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .form-table th {
+        padding: 12px 15px 13px 15px;
+        vertical-align: middle;
+        text-align: left;
+        font-weight: 300; }
+      /* line 228, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .form-table input, .nav-right .content .form-table textarea {
+        border: 1px solid #e0e0e0;
+        padding: 10px 8px;
+        color: #616161;
+        background: #fff;
+        box-shadow: none !important;
+        width: 80%;
+        border-radius: 4px;
+        margin-bottom: 15px;
+        font-family: 'Roboto', sans-serif; }
+      /* line 240, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .form-table .required {
+        color: gray; }
+      /* line 244, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .form-table .errorlist {
+        list-style: none;
+        background: #fde0dc;
+        border: 1px solid #f69988 !important;
+        width: 80%;
+        padding-left: 10px;
+        margin-top: -10px;
+        margin-bottom: 15px;
+        color: gray;
+        border-radius: 4px; }
+        /* line 255, /home/angga/other/rumahtotok/static_files/css/style.scss */
+        .nav-right .content .form-table .errorlist li {
+          padding: 10px;
+          display: block; }
+      /* line 261, /home/angga/other/rumahtotok/static_files/css/style.scss */
+      .nav-right .content .form-table .required {
+        margin-left: 20px; }
+  /* line 268, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  .nav-right .content-form {
+    background: #f2f4f8; }
+  /* line 272, /home/angga/other/rumahtotok/static_files/css/style.scss */
+  .nav-right .copy {
+    color: gray;
+    margin: 20px 0px 20px 20px;
+    background: #fff;
+    text-align: center;
+    padding: 1.5em 0;
+    font-size: 14px; }
+
+/* line 283, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.round {
+  float: left;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin-bottom: 15px;
+  margin-right: 30px;
+  margin-left: 15px; }
+
+/* line 293, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.customer-name {
+  margin-top: 7px;
+  margin-bottom: 5px;
+  font-family: 'Raleway-Regular'; }
+
+/* line 299, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.detail-right {
+  float: right;
+  margin-top: 25px;
+  margin-right: 20px; }
+
+/* line 305, /home/angga/other/rumahtotok/static_files/css/style.scss */
+.title-section {
+  font-family: 'Raleway-Regular';
+  margin-top: 25px;
+  margin-bottom: 0px;
+  font-size: 20px;
+  color: #ef553a;
+  margin-left: 15px; }

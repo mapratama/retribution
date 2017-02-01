@@ -1,0 +1,43 @@
+{% load staticfiles %}
+{% load compress %}
+<html >
+<title>{{ title }}</title>
+    <link rel="icon" href="{% static 'img/icon/icon.ico' %}" type="image/x-icon">
+    {% compress css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login_style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}" />
+    {% endcompress %}
+</head>
+<body class="align">
+
+<div class="body"></div>
+
+<div class="wrapper">
+    {% if messages %}
+        <div class="message animated once shake">Please login as user employee!</div>
+    {% endif %}
+
+    <div class="site__container">
+        <div class="grid__container">
+            <h2 class="login-title">Login</h2>
+            <form method="POST" class="form form--login" action="{% url 'backoffice:login' %}">
+            {% csrf_token %}
+                <div class="form__field">
+                    <label> <i class="fa fa-user silver"></i> <span class="hidden">Username</span></label>
+                    {{ form.username }}
+                </div>
+                <div class="form__field">
+                    <label><i class="fa fa-lock silver"></i><span class="hidden">Password</span></label>
+                    {{ form.password }}
+                </div>
+                <div class="form__field">
+                  <input type="submit" value="Sign In">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

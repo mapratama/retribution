@@ -1,0 +1,31 @@
+{% extends 'backoffice/base.html' %}
+{% load staticfiles %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="toolbar">
+        <a class="button" href="{% url 'backoffice:treatments:add' %}"><i class="fa fa-plus-circle white fa-fw"></i> Add</a>
+    </div>
+
+    <div class="table-wrapper">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        {% for treatment in treatments %}
+        <tr>
+            <td><a class="id" href="{% url 'backoffice:treatments:detail' treatment.id %}"> {{ treatment.name }} </a></td>
+            <td>{{ treatment.position }}</td>
+            <td>{% if treatment.is_active %}Yes{% else %}No{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+    
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'backoffice/base.html' %}
+{% load staticfiles %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="content">
+	{% if user.is_superuser %}
+	<div class="dropdown detail-right">
+    	<span class="box"><i class="fa fa-list white fa-fw"></i></span>
+    	<div class="dropdown-content box">
+        	<a href="{% url 'backoffice:therapists:edit' therapist.id %}"><i class="fa fa-pencil white fa-fw">
+        	</i> Edit</a>
+    	</div>
+	</div>
+	{% endif %}
+
+	<img class="round" src="/static/img/icon/user_icon.jpg">
+
+	<h2 class="customer-name"> {{ therapist.user.name }} </h2> 
+
+	<div class="clear"> </div>
+
+	<h3 class="title-section"> Profile </h3>
+	<hr></hr>
+	<table class="data-detail">
+		<tr><th>Gender</th> <td class="colon">:</td> <td> {{ therapist.user.get_gender_display }} </td></tr>
+		<tr><th>Max Booking</th> <td class="colon">:</td> <td> {{ therapist.max_booking }} </td></tr>
+		<tr><th>Address</th> <td class="colon">:</td> <td> {{ therapist.user.address }} </td></tr>
+		<tr><th>Store</th> <td class="colon">:</td> <td> {{ therapist.store.name }} </td></tr>
+	</table>
+
+</div>
+
+<div class="clear"> </div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'backoffice/base.html' %}
+{% load staticfiles %}
+{% block title %}{{ tittle }} {% endblock %}
+
+{% block content %}
+<div class="content">
+	<div class="dropdown detail-right">
+    	<span class="box"><i class="fa fa-list white fa-fw"></i></span>
+    	<div class="clear"> </div>
+    	<div class="dropdown-content box">
+        	<a href="{% url 'backoffice:treatments:edit' treatment.id %}"><i class="fa fa-pencil white fa-fw"></i> Edit</a>
+        	<a href="{% url 'backoffice:services:add' treatment.id %}"><i class="fa fa-medkit white fa-fw"></i> Add Service</a>
+    	</div>
+	</div>
+
+	<img class="round" src="{% if treatment.photo %}{{treatment.photo.url}} {% else %} {% static 'img/icon/user_icon.jpg' %} {% endif %}">
+
+	<h2 class="customer-name"> {{ treatment.name }} </h2> 
+	<p>{% if treatment.is_active %}Active{% else %}Non Active{% endif %}</p>
+
+	<div class="clear"> </div>
+
+	<h3 class="title-section"> Description </h3>
+	<hr></hr>
+	<table class="data-detail">
+		<tr><td> {{ treatment.description }} </td></tr>
+	</table>
+
+	<div class="clear"> </div>
+	<h3 class="title-section"> Services </h3>
+	<table class="data-table">
+		<thead>
+	        <tr>
+	            <th>Name</th>
+	            <th>Details</th>
+	            <th>Time Needed</th>
+	            <th>Price</th>
+	            <th>Active</th> 
+	        </tr>
+    	</thead>
+    	{% for service in services %}
+	    <tr>
+	        <td><a class="id" href="{% url 'backoffice:services:detail' service.id %}">{{ service.name }}</a></td>
+	        <td>{% if service.number_of_visit > 1 %}{{ service.number_of_visit }}x visit{% else %}For {{ service.number_of_people }} people{% endif %}</td>
+	        <td>{{ service.time_needed }}</td>
+	        <td>{{ service.price }}</td>
+	        <td>{% if service.is_active %}Yes{% else %}No{% endif %}</td>
+	    </tr>
+	    {% endfor %}
+	</table>
+
+	
+</div>
+
+<div class="clear"> </div>
+{% endblock %}

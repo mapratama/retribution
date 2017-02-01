@@ -1,0 +1,70 @@
+{% extends 'backoffice/base.html' %}
+{% load staticfiles %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="content content-form">
+<div>
+
+    {{ form.non_field_errors }}
+    <form method="{{ method|default:'POST'}}" action="{{ action }}">
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        <table class="form-table">
+            <tbody>
+            {% for field in form.visible_fields %}
+                <tr>
+                    <th class="col-2-12">{{ field.label_tag }}</th>
+                    <td class="col-10-12">
+                        {{ field }}
+
+                        {% if field.field.required %}
+                            <span class="required">*</span>
+                        {% endif %}
+
+                        {% if field.help_text %}
+                            <span class = 'helptext'>{{ field.help_text }}</span>
+                        {% endif %}
+
+                        {{ field.errors }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <hr></hr>
+        
+        <table class="form-table">
+            <tbody>
+                <tr>
+                <th class="col-2-12"></th>
+                <td class="col-10-12">
+                <button class="button">
+                    <i class="fa fa-download white fa-fw"></i> Download </button>
+                </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </form>
+
+</div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bower/bower_components/datetimepicker/jquery.datetimepicker.css' %}" />
+{% endblock %}
+
+{% block extra_javascript %}
+    <script src="{% static 'bower/bower_components/datetimepicker/build/jquery.datetimepicker.full.js' %}"></script>
+    <script>
+        $('#id_start, #id_end').datetimepicker({
+            timepicker:false,
+            format:'Y/m/d'
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'backoffice/base.html' %}
+{% load staticfiles %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="content">
+<div>
+<a class="button" href="{% url 'backoffice:products:add' %}"><i class="fa fa-plus-circle white fa-fw"></i> Add</a>
+
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Treatment</th>
+            <th>Name</th>
+            <th>Number of Visit</th>
+            <th>Number of People</th>
+            <th>Time Needed</th>
+            <th>Price</th>
+            <th>Active</th> 
+        </tr>
+    </thead>
+    {% for product in products %}
+    <tr>
+        <td><a class="id" href="{% url 'backoffice:treatments:detail' product.treatment_id %}">{{ product.treatment }}</a></td>
+        <td><a class="id" href="{% url 'backoffice:products:detail' product.id %}">{{ product.name }}</a></td>
+        <td>{{ product.number_of_visit }}x visit</td>
+        <td>{{ product.number_of_people }} people</td>
+        <td>{{ product.time_needed }}</td>
+        <td>{{ product.price }}</td>
+        <td>{% if product.is_active %}Yes{% else %}No{% endif %}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</div>
+</div>
+{% endblock %}
