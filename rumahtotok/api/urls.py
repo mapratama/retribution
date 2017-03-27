@@ -10,7 +10,4 @@ urlpatterns = [
     url(r'^treatments/', include('rumahtotok.api.treatments.urls', namespace='treatments')),
     url(r'^home/', include('rumahtotok.api.home.urls', namespace='home')),
     url(r'^users/', include('rumahtotok.api.users.urls', namespace='users')),
-    url(r'^vouchers/', include('rumahtotok.api.vouchers.urls', namespace='vouchers')),
-    url(r'^wallets/', include('rumahtotok.api.wallets.urls', namespace='wallets')),
-    url(r'^redemptions/', include('rumahtotok.api.redemptions.urls', namespace='redemptions')),
 ]
