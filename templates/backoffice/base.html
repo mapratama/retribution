@@ -4,8 +4,6 @@
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
-    <link rel="icon" href="{% static 'img/icon/icon.ico' %}" type="image/x-icon">
-    {% block extra_header %}{% endblock %}
 
     {% compress css %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/simplegrid.css' %}" />
@@ -19,8 +17,7 @@
 <body>
     <div id="wrapper">
         <div class="col-1-1 nav-top"> 
-            <div class="gambar-logo"></div>
-            <div class="merchant-name"> <h2>Rumah Totok Bekasi</h2></div>
+            <div class="merchant-name"> <h2>Retribution Wisata Sukabumi</h2></div>
             <div class="employee-name"> 
                 Hi {{ request.user|title }} |
                 <a href="{% url 'backoffice:log_out' %}"><i class="fa fa-sign-out fa-fw white"></i></a>
@@ -31,15 +28,11 @@
         <div class="col-2-12 nav-left">
             <div class="nav-left">
                 <ul>
-                    <li><a href="{% url 'backoffice:customers:index' %}"><i class="fa fa-user silver fa-fw"></i> Customers</a></li>
-                    <li><a href="{% url 'backoffice:stores:index' %}"><i class="fa  fa-map-marker silver fa-fw"></i> Stores</a></li>
-                    <li><a href="{% url 'backoffice:treatments:index' %}"><i class="fa fa-pagelines silver fa-fw"></i> Treatments</a></li>
-                    <li><a href="{% url 'backoffice:therapists:index' %}"><i class="fa fa-user-md silver fa-fw"></i> Therapists</a></li>
-                    <li><a href="{% url 'backoffice:orders:index' %}"><i class="fa fa-list-ul silver fa-fw"></i> Orders </a></li>
-                    <li><a href="{% url 'backoffice:bookings:index' %}"><i class="fa fa-calendar silver fa-fw"></i> Bookings</a></li>
-                    <li><a href="{% url 'backoffice:payment_confirmations:index' %}"><i class="fa fa fa-check-square-o fa-fw"></i> Payment Confirmations</a></li>
-                    <li><a href="{% url 'backoffice:promotions:index' %}"><i class="fa fa-gift silver fa-fw"></i> Promotions</a></li>
-                    <li><a href="{% url 'backoffice:reports:index' %}"><i class="fa fa-file-text silver fa-fw"></i> Reports</a></li>
+                    <li><a href="{% url 'backoffice:customers:index' %}"><i class="fa fa-suitcase fa-fw"></i> Customers</a></li>
+                    <li><a href="{% url 'backoffice:employees:index' %}"><i class="fa fa-users fa-fw"></i> Employees</a></li>
+                    <li><a href="{% url 'backoffice:destinations:index' %}"><i class="fa  fa-map-marker silver fa-fw"></i> Destinations</a></li>
+                    <li><a href="{% url 'backoffice:retributions:add' %}"><i class="fa fa fa-plus-circle fa-fw"></i> Add Retribution</a></li>
+                    <li><a href="{% url 'backoffice:retributions:index' %}"><i class="fa fa-book fa-fw"></i> Results</a></li>
                 </ul>
             </div>
         </div>
@@ -56,10 +49,6 @@
             {% endfor %}
 
             {% block content %} {% endblock %}
-
-            <div class="copy">
-                <p>Copyright Rumah Totok @2016</p>
-            </div>
 
         </div>
 

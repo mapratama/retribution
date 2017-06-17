@@ -1,0 +1,69 @@
+{% extends 'backoffice/base.html' %}
+{% load staticfiles %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="content">
+<form class="search-form" action='' method='GET' id="options__content">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td></td>
+            <td class="tdinput" colspan="2">
+                <input type="text" name="query" {% if query %}value = '{{ query }}'{% endif %}
+                placeholder="Search by order code or user name and user mobile number">
+            </td>
+        </tr>
+        <tr><td></td><td class="first">Tourist Type :</td> <td>{{ form.type }}</td></tr>
+        <tr><td></td><td class="first">Transport Type :</td> <td>{{ form.transport }}</td>
+        </tr>
+    </table>
+</form>
+
+<div class="table-wrapper">
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>QR Code</th>
+            <th>Destination</th>
+            <th>Type</th>
+            <th>Transport</th>
+            <th>Transport ID</th>
+            <th>Qty</th>
+        </tr>
+    </thead>
+    {% for retribution in retributions %}
+    <tr>
+        <td><a class="id" href="{% url 'backoffice:retributions:detail' retribution.id %}"> {{ retribution.qr_code }} </a></td>
+        <td><a class="id" href="{% url 'backoffice:destinations:detail' retribution.destination_id %}"> {{ retribution.destination.name }} </a></td>
+        <td>{{ retribution.get_type_display }}</td>
+        <td>{{ retribution.get_transport_display|default:'-' }} </td>
+        <td>{{ retribution.transport_id|default:'-' }}</td>
+        <td>{{ retribution.quantity }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% if paginator.next or paginator.previous %}
+<div class="pagination">
+    {% if paginator.previous %}
+        <a class="prev" href="?page={{ paginator.previous }}{{ query_parameters }}" class="prev">‹ Prev </a>
+    {% endif %}
+    {% if paginator.next %}
+        <a class="next" href="?page={{ paginator.next }}{{ query_parameters }}"  class="next">Next ›</a>
+    {% endif %}
+</div>
+{% endif %}
+<div class="clear"></div>
+</div>
+
+</div>
+{% endblock %}
+
+{% block extra_javascript %}
+    <script>
+        $(document).on('click', '#id_type, #id_transport', function(event) {
+            $('.search-form').submit()
+        });
+
+    </script>
+{% endblock %}

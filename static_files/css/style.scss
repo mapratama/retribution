@@ -14,8 +14,8 @@
 }
 
 $red: red;
-$orange: #ef553a;
-$dark-orange: #DE4D36;
+$orange: #057d92;
+$dark-orange: #057d92;
 
 h4, h5, h6,
 h1, h2, h3 {margin-top: 0; 	font-family: 'SourceSansPro-Bold';}
@@ -24,7 +24,7 @@ p {margin: 0; font-family: 'SourceSansPro-Regular', sans-serif;}
 
 html, body{
     font-size: 100%;
-  	background: rgb(43, 51, 61);
+  	background: #24272d;
   	margin: 0px;
   	font-family: 'SourceSansPro-Regular', sans-serif;
 
@@ -111,21 +111,21 @@ hr {
 
 
 .nav-top {
-	font-family: 'SourceSansPro-Bold';
-	background: rgba(253, 172, 10, 0.81);
+	font-family: 'Raleway-Regular';
+	background: #033740;
 	height: 47px;
 
 	h2 {
 		padding: 10px 10px;
 		color: #ffffff;
-		font-family: 'Raleway-Regular';
+		font-family: 'SourceSansPro-Bold';
 		font-weight: bold;
 	}
 
 
 	.gambar-logo {
 		float: left;
-		background: url('/static/img/logo.jpg');
+		background: url('/static/img/icon.jpg');
 		margin-top: 8px;
 		margin-left: 18px;
 	    width: 35px;
@@ -156,8 +156,9 @@ hr {
 }
 
 .nav-left {
-	min-height: 600px;
+	min-height: 800px;
 	padding: 0px;
+	background: #057d92;
 	ul {
 		width: 100%;
 		margin: 2em 0 0 0;
@@ -170,10 +171,10 @@ hr {
 
     		a {
     			color: #c5d0de;
-	    		font-size: 15px;
+	    		font-size: 17px;
 				position: relative;
 	    		display: block;
-	    		padding: 10px 15px;
+	    		padding: 15px 15px;
 			}
 
 			a:hover {

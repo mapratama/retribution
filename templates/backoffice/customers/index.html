@@ -13,7 +13,7 @@
             </td>
             <td class="tdinput" colspan="2">
                 <input type="text" name="query" {% if query %}value = '{{ query }}'{% endif %}
-                placeholder="Search by user code or name">
+                placeholder="Search by username, name or mobile number">
             </td>
         </tr>
     </table>
@@ -23,15 +23,15 @@
 <table class="data-table">
     <thead>
         <tr>
-            <th>Code</th>
+            <th>Username</th>
             <th>Name</th>
-            <th>Mobile</th>
+            <th>Mobile Number</th>
         </tr>
     </thead>
     {% for user in users %}
     <tr>
         <td><a class="id" href="{% url 'backoffice:customers:detail' user.id %}"> 
-        {{ user.code }} </a></td>
+        {{ user.username }} </a></td>
         <td>{{ user.name }}</td>
         <td>{{ user.mobile_number }}</td>
     </tr>

@@ -26,9 +26,8 @@ body {
     bottom: -40px;
     width: auto;
     height: auto;
-    background: url(../img/loginbackground.jpg);
+    background: url(../img/sukabumi.jpg);
     background-size: cover;
-    -webkit-filter: blur(6px);
     z-index: -10;
     image-rendering: auto;
     image-rendering: crisp-edges;
@@ -113,13 +112,13 @@ input {
   background-color: #EFE9E9;
 }
 .form--login input[type="submit"] {
-  background-color: #ef553a;
+  background-color: #057d92;
   color: #eee;
   font-weight: bold;
   text-transform: uppercase;
 }
 .form--login input[type="submit"]:focus, .form--login input[type="submit"]:hover {
-  background-color: #DE4D36;
+  background-color: #057d92;
 }
 .form__field {
   display: -webkit-box;

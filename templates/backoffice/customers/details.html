@@ -10,7 +10,6 @@
     	<span class="box"><i class="fa fa-list white fa-fw"></i></span>
     	<div class="dropdown-content box">
     		<a href="{% url 'backoffice:customers:edit' user.id %}"><i class="fa fa-pencil white fa-fw"></i> Edit </a>
-    		<a href="{% url 'backoffice:balances:add' user.id %}"><i class="fa fa-stack-exchange white fa-fw"></i> Update Balance </a>
     	</div>
 	</div>
 
@@ -24,37 +23,9 @@
 	<h3 class="title-section"> Profile </h3>
 	<hr></hr>
 	<table class="data-detail">
+		<tr><th>Username</th> <td class="colon">:</td> <td> {{ user.username }} </td></tr>
 		<tr><th>Email</th> <td class="colon">:</td> <td> {{ user.email }} </td></tr>
-		<tr><th>Birthday</th> <td class="colon">:</td> <td> {{ user.birthday }} </td></tr>
-		<tr><th>Gender</th> <td class="colon">:</td> <td>{{ user.get_gender_display }}</td></tr>
-		<tr><th>Address</th> <td class="colon">:</td> <td>{{ user.address }}</td></tr>
-		<tr><th>Balance</th> <td class="colon">:</td> <td> <strong>{{ user.balance|floatformat:0|intcomma }} </strong></td></tr>
 	</table>
-
-	<h3 class="title-section"> Balance Hystory </h3>
-	<hr></hr>
-	<table class="data-table">
-		<thead>
-	        <tr>
-	            <th>Code</th>
-	            <th>Time</th>
-	            <th>Value</th>
-	            <th>Type</th>
-	            <th>Notes</th>
-	        </tr>
-    	</thead>
-    	{% for balance in balance_updates %}
-	    <tr>
-	        <td><a class="id" href="{% url 'backoffice:balances:details' balance.id %}">
-	        #{{ balance.id }} </a></td>
-	        <td>{{ balance.created|date:"j M Y, H:i"}}</td>
-	        <td class="right">{{ balance.value|floatformat:0|intcomma:'0'}}</td>
-	        <td>{{ balance.get_type_display }} </td>
-	        <td>{{ balance.notes }} </td>
-	    </tr>
-	    {% endfor %}
-	</table>
-	<hr></hr>
 	
 </div>
 

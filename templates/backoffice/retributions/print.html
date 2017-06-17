@@ -1,0 +1,62 @@
+{% load staticfiles %}
+{% load humanize %}
+{% load compress %}
+<html>
+
+<head>
+	<title>Print Retribution</title>
+	<link rel="icon" href="{% static 'img/icon/icon.ico' %}" type="image/x-icon">
+	{% compress css %}
+		<link rel="stylesheet" type="text/css" href="{% static 'css/login_style.css' %}" />
+		<link rel="stylesheet" type="text/x-scss" href="{% static 'css/print.scss' %}" media="print" />
+	{% endcompress %}
+</head>
+
+<body>
+
+<div>
+
+	<p class="address">{{ retribution.destination.name }}</p>
+	<p class="address">{{ retribution.destination.address }}</p>
+
+	<table class="data-detail">
+		<tr>
+			<td class="first">Code</td>
+			<td class="colon"> : </td>
+			<td>{{ retribution.qr_code }}</td>
+		</tr>
+		<tr>
+			<td class="first">Tipe Turis</td>
+			<td> : </td>
+			<td>{{ retribution.get_type_display }}</td></tr>
+		<tr>
+			<td class="first">Jumlah</td>
+			<td> : </td>
+			<td>{{ retribution.quantity }} orang</td>
+		</tr>
+		{% if retribution.transport %}
+		<tr>
+			<td class="first">Transport</td>
+			<td> : </td>
+			<td>{{ retribution.get_transport_display }} ({{ retribution.transport_id }})</td>
+		</tr>
+		{% endif %}
+		<tr>
+			<td class="first">Total Harga</td>
+			<td>:</td>
+			<td>{{ retribution.price|floatformat:0|intcomma }}</td>
+		</tr>
+	</table>
+
+	<p class="info">________________________________</p>
+	<p class="info">Terima kasih atas kunjungan anda </p>
+<div>
+
+</body>
+</html>
+
+{% block extra_javascript %}
+    <script>
+        window.onload = function() { window.print(); }
+    </script>
+{% endblock %}

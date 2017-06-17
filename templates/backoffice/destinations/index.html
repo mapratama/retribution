@@ -1,0 +1,41 @@
+{% extends 'backoffice/base.html' %}
+{% load staticfiles %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="content">
+<form class="search-form" action='' method='GET' id="options__content">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td class="button_add">
+                <a class="button" href="{% url 'backoffice:destinations:add' %}"><i class="fa fa-plus-circle white fa-fw"></i> Add</a>
+            </td>
+            <td class="tdinput" colspan="2">
+                <input type="text" name="query" {% if query %}value = '{{ query }}'{% endif %}
+                placeholder="Search by destination name">
+            </td>
+        </tr>
+    </table>
+</form>
+
+<div class="table-wrapper">
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+    {% for destination in destinations %}
+    <tr>
+        <td><a class="id" href="{% url 'backoffice:destinations:detail' destination.id %}"> 
+        {{ destination.name }} </a></td>
+        <td>{{ destination.address }} </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+</div>
+{% endblock %}

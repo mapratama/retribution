@@ -1,0 +1,26 @@
+{% extends 'backoffice/base.html' %}
+{% load staticfiles %}
+{% load humanize %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="content">
+
+	<div class="dropdown detail-right">
+    	<span class="box"><i class="fa fa-list white fa-fw"></i></span>
+    	<div class="dropdown-content box">
+    		<a href="{% url 'backoffice:destinations:edit' destination.id %}"><i class="fa fa-pencil white fa-fw"></i> Edit </a>
+    	</div>
+	</div>
+
+	<h3 class="title-section"> Details </h3>
+	<hr></hr>
+	<table class="data-detail">
+		<tr><th>Name</th> <td class="colon">:</td> <td> {{ destination.name }} </td></tr>
+		<tr><th>Address</th> <td class="colon">:</td> <td> {{ destination.address }} </td></tr>
+	</table>
+	
+</div>
+
+<div class="clear"> </div>
+{% endblock %}

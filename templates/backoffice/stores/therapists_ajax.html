@@ -1,6 +1,0 @@
-<select id="id_therapist" name="therapist">
-    <option selected="selected">---------</option>
-    {% for therapist in therapists %}
-        <option value="{{ therapist.id }}">{{ therapist.user.name }}</option>
-    {% endfor %}
-</select>
