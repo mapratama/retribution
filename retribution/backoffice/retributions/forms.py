@@ -39,6 +39,9 @@ class RetributionFilterForm(forms.Form):
         transport = self.cleaned_data['transport']
         retributions = Retribution.objects.select_related('destination').order_by('-created')
 
+        print type
+        print transport
+
         if type:
             retributions = retributions.filter(type__in=type)
         if transport:

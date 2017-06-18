@@ -21,6 +21,9 @@
 </form>
 
 <div class="table-wrapper">
+<div class="summary">
+    <p class="title">Total Customer : {{ total_customer }} </p>
+</div>
 <table class="data-table">
     <thead>
         <tr>
@@ -43,6 +46,7 @@
     </tr>
     {% endfor %}
 </table>
+
 {% if paginator.next or paginator.previous %}
 <div class="pagination">
     {% if paginator.previous %}

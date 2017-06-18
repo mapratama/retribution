@@ -57,6 +57,8 @@
 
 {% block extra_javascript %}
     <script>
-        window.onload = function() { window.print(); }
+        window.onload = function() { 
+        	setTimeout(function() { window.print(); }, 200); 
+        }
     </script>
 {% endblock %}

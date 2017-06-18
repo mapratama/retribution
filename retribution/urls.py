@@ -4,7 +4,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^backoffice/', include('retribution.backoffice.urls', namespace='backoffice')),
+    url(r'^', include('retribution.backoffice.urls', namespace='backoffice')),
 ]
 
 if settings.DEBUG:

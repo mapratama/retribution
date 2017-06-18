@@ -13,8 +13,8 @@ from .forms import BaseRetributionForm, RetributionFilterForm
 @user_employee_required
 def index(request):
     initial = {
-        'type': [Retribution.TYPE.local],
-        'transport': [Retribution.TRANSPORT.car]
+        'type': [Retribution.TYPE.local, Retribution.TYPE.mancanegara],
+        'transport': [Retribution.TRANSPORT.motorcycle]
     }
 
     query_parameters = request.GET.copy()
@@ -25,7 +25,9 @@ def index(request):
     if form.is_valid():
         retributions = form.get_bookings()
     else:
-        retributions = Retribution.objects.select_related('destination').order_by('-created')
+        retributions = Retribution.objects\
+            .filter(transport__in=[Retribution.TRANSPORT.motorcycle])\
+            .select_related('destination').order_by('-created')
 
     query = request.GET.get('query', '').strip()
     if query:
@@ -44,13 +46,14 @@ def index(request):
         query_parameters = ''
 
     page = request.GET.get('page', 1)
-    paginator = Page(retributions, page, step=15)
+    paginator = Page(retributions, page, step=10)
     context_data = {
         'retributions': paginator.objects,
         'paginator': paginator,
         'title': 'Retributions',
         'query': query,
         'form': form,
+        'total_customer': retributions.count(),
         'query_parameters': query_parameters
     }
     return render(request, 'backoffice/retributions/index.html', context_data)
