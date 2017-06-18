@@ -79,11 +79,11 @@ def deploy_project(target_dir='retribution'):
     # }
     # sudo('mv %ssettings_local.py.tpl %s/%s/settings_local.py' %
         # (env.HOME_PATH, env.SRC_PATH, env.PROJECT_NAME))
-    # install_project_requirements()
+    install_project_requirements()
     # install_front_end_requirements()
-    # collect_static()
+    collect_static()
     # compress_static()
-    # sudo('chown -R www-data.www-data %s' % env.PROJECT_PATH)
+    sudo('chown -R www-data.www-data %s' % env.PROJECT_PATH)
     migrate()
 
 

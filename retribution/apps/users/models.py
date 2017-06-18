@@ -24,8 +24,7 @@ class CustomUserManager(UserManager):
         return user
 
     def create_superuser(self, username, password, **extra_fields):
-        user = self.create_user(username=username, type=User.TYPE.employee,
-                                password=password, **extra_fields)
+        user = self.create_user(username=username, password=password, **extra_fields)
         user.is_staff = True
         user.is_active = True
         user.is_superuser = True
