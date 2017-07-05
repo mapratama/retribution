@@ -42,4 +42,4 @@ def log_out(request):
 
 
 def index(request):
-    return redirect('backoffice:customers:index')
+    return redirect('backoffice:retributions:index')
