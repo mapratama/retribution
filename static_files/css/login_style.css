@@ -26,7 +26,7 @@ body {
     bottom: -40px;
     width: auto;
     height: auto;
-    background: url(../img/cisolok.jpg);
+    background: url(../img/sukabumi.jpg);
     background-size: cover;
     z-index: -10;
     image-rendering: auto;
@@ -64,7 +64,7 @@ input {
 
 .site__container {
   padding: 24px 0 37px 0;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(197,208,222,0.75);
 }
 
 .message {
@@ -172,6 +172,19 @@ input {
 }
 
 .login-title {
-  color:#ffffff;
+  color:#033740;
   margin-bottom: 25px;
+  margin-left: 10px;
+  font-size: 27px;
+}
+
+.logo {
+  width:85;
+  height: 110;
+  margin-top: 17px;
+}
+
+.title_bar {
+  display: flex;
+  margin-bottom: 1rem;
 }
