@@ -1,7 +1,5 @@
 from django import forms
 
-from model_utils import Choices
-
 from retribution.apps.retributions.models import Retribution
 
 
@@ -16,11 +14,17 @@ class BaseRetributionForm(forms.ModelForm):
         retribution = super(BaseRetributionForm, self).save(*args, **kwargs)
         retribution.created_by = user
 
-        price = retribution.quantity * 5000
-        if retribution.transport == Retribution.TRANSPORT.motorcycle:
-            price = price + 5000
-        elif retribution.transport == Retribution.TRANSPORT.car:
-            price = price + 15000
+        price = retribution.quantity * 2500
+        if retribution.transport == Retribution.TRANSPORT.motor:
+            price = price + 8000
+        elif retribution.transport == Retribution.TRANSPORT.sedan:
+            price = price + 20000
+        elif retribution.transport == Retribution.TRANSPORT.mini_bus:
+            price = price + 30000
+        elif retribution.transport == Retribution.TRANSPORT.micro_bus:
+            price = price + 70000
+        elif retribution.transport == Retribution.TRANSPORT.bus:
+            price = price + 135000
 
         retribution.price = price
         retribution.save()
@@ -38,9 +42,6 @@ class RetributionFilterForm(forms.Form):
         type = self.cleaned_data['type']
         transport = self.cleaned_data['transport']
         retributions = Retribution.objects.select_related('destination').order_by('-created')
-
-        print type
-        print transport
 
         if type:
             retributions = retributions.filter(type__in=type)

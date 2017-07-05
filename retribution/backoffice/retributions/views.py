@@ -14,7 +14,7 @@ from .forms import BaseRetributionForm, RetributionFilterForm
 def index(request):
     initial = {
         'type': [Retribution.TYPE.local, Retribution.TYPE.mancanegara],
-        'transport': [Retribution.TRANSPORT.motorcycle]
+        'transport': [Retribution.TRANSPORT.motor]
     }
 
     query_parameters = request.GET.copy()
@@ -26,7 +26,7 @@ def index(request):
         retributions = form.get_bookings()
     else:
         retributions = Retribution.objects\
-            .filter(transport__in=[Retribution.TRANSPORT.motorcycle])\
+            .filter(transport__in=[Retribution.TRANSPORT.motor])\
             .select_related('destination').order_by('-created')
 
     query = request.GET.get('query', '').strip()

@@ -21,8 +21,11 @@ class Retribution(models.Model):
     quantity = models.PositiveIntegerField(validators=[MinValueValidator(0)])
 
     TRANSPORT = Choices(
-        (1, 'motorcycle', 'Motor'),
-        (2, 'car', 'Mobil'),
+        (1, 'motor', 'Motor'),
+        (2, 'sedan', 'Sedan'),
+        (3, 'mini_bus', 'Mini Bus'),
+        (4, 'micro_bus', 'Micro Bus'),
+        (5, 'bus', 'Bus'),
     )
 
     transport = models.PositiveSmallIntegerField(choices=TRANSPORT, blank=True, null=True)
