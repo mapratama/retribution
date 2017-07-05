@@ -23,7 +23,7 @@ def login_view(request):
         #     strore_id = stores.values_list("id", flat=True)
 
         # cache.set(user.code, strore_id)
-        return redirect('backoffice:customers:index')
+        return redirect('backoffice:retributions:index')
     else:
         invalid_data = request.method == 'POST'
 
