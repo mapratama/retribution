@@ -1,5 +1,6 @@
 {% extends 'backoffice/base.html' %}
 {% load staticfiles %}
+{% load humanize %}
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
@@ -14,6 +15,7 @@
                 placeholder="Search by QR code or Transport ID or Mobile Number">
             </td>
         </tr>
+        <tr><td></td><td class="first">Destination :</td> <td>{{ form.destinations }}</td></tr>
         <tr><td></td><td class="first">Tourist Type :</td> <td>{{ form.type }}</td></tr>
         <tr><td></td><td class="first">Transport Type :</td> <td>{{ form.transport }}</td>
         </tr>
@@ -22,7 +24,9 @@
 
 <div class="table-wrapper">
 <div class="summary">
-    <p class="title">Total Retribution : {{ total_customer }} </p>
+    <p class="title">Total Retribution : {{ total_retributions }} transaksi</p>
+    <p class="title">Total Customer : {{ total_customer }} orang</p>
+    <p class="title">Total Transaction : Rp. {{ total_transaction|floatformat:0|intcomma }} </p>
 </div>
 <table class="data-table">
     <thead>
@@ -65,7 +69,7 @@
 
 {% block extra_javascript %}
     <script>
-        $(document).on('click', '#id_type, #id_transport', function(event) {
+        $(document).on('click', '#id_type, #id_transport, #id_destinations', function(event) {
             $('.search-form').submit()
         });
 

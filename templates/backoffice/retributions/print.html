@@ -22,8 +22,8 @@
 		<tr><td align="center">========================================</td></tr>
 		<tr><td align="center">{{ retribution.created|date:"m/d/Y, H:i" }}</td></tr>
 		<tr><td align="center">
-			<img src="{% static 'img/barcode_img.jpg' %}"></td></tr>
-		<tr><td align="center">{{ retribution.qr_code }}</td></tr>
+			<img src="{% static 'img/new_barcode.jpg' %}"></td></tr>
+		<tr><td align="center">47KA6TN54F87</td></tr>
 		<tr><td align="center">Wisatawan : {{ retribution.get_type_display }}</td></tr>
 		<tr><td align="center">Jumlah : {{ retribution.quantity }} orang @ Rp.2.500</td></tr>
 		{% if retribution.transport %}
@@ -42,7 +42,7 @@
 {% block extra_javascript %}
     <script>
         window.onload = function() { 
-        	setTimeout(function() { window.print(); }, 900); 
+        	setTimeout(function() { window.print(); }, 1500); 
         }
     </script>
 {% endblock %}

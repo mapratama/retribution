@@ -1,5 +1,6 @@
 from django import forms
 
+from retribution.apps.destinations.models import Destination
 from retribution.apps.retributions.models import Retribution
 
 
@@ -35,13 +36,20 @@ class BaseRetributionForm(forms.ModelForm):
 class RetributionFilterForm(forms.Form):
     type = forms.MultipleChoiceField(choices=Retribution.TYPE, required=False,
                                      widget=forms.CheckboxSelectMultiple())
-    transport = forms.MultipleChoiceField(choices=Retribution.TRANSPORT, required=False,
-                                          widget=forms.CheckboxSelectMultiple())
+    transport = forms.MultipleChoiceField(
+        choices=Retribution.TRANSPORT, required=False,
+        widget=forms.CheckboxSelectMultiple()
+    )
+    destinations = forms.ModelMultipleChoiceField(
+        queryset=Destination.objects.all(), widget=forms.CheckboxSelectMultiple(),
+        required=False
+    )
 
     def get_bookings(self):
         type = self.cleaned_data['type']
         transport = self.cleaned_data['transport']
-        retributions = Retribution.objects.select_related('destination').order_by('-created')
+        retributions = Retribution.objects.filter(destination__in=self.cleaned_data['destinations'])\
+            .select_related('destination').order_by('-created')
 
         if type:
             retributions = retributions.filter(type__in=type)

@@ -1,8 +1,9 @@
 from django.contrib import messages
 from django.core.urlresolvers import reverse
-from django.db.models import Q
+from django.db.models import Q, Sum
 from django.shortcuts import render, redirect, get_object_or_404
 
+from retribution.apps.destinations.models import Destination
 from retribution.apps.retributions.models import Retribution
 from retribution.apps.users.decorators import user_employee_required
 from retribution.core.utils import normalize_phone, Page
@@ -12,9 +13,12 @@ from .forms import BaseRetributionForm, RetributionFilterForm
 
 @user_employee_required
 def index(request):
+    TRANSPORT_INITIAL = [Retribution.TRANSPORT.motor, Retribution.TRANSPORT.sedan,
+                         Retribution.TRANSPORT.bus]
     initial = {
-        'type': [Retribution.TYPE.local, Retribution.TYPE.mancanegara],
-        'transport': [Retribution.TRANSPORT.motor]
+        'type': [Retribution.TYPE.local],
+        'transport': TRANSPORT_INITIAL,
+        'destinations': Destination.objects.all(),
     }
 
     query_parameters = request.GET.copy()
@@ -26,7 +30,7 @@ def index(request):
         retributions = form.get_bookings()
     else:
         retributions = Retribution.objects\
-            .filter(transport__in=[Retribution.TRANSPORT.motor])\
+            .filter(transport__in=TRANSPORT_INITIAL)\
             .select_related('destination').order_by('-created')
 
     query = request.GET.get('query', '').strip()
@@ -53,7 +57,9 @@ def index(request):
         'title': 'Retributions',
         'query': query,
         'form': form,
-        'total_customer': retributions.count(),
+        'total_retributions': retributions.count(),
+        'total_customer': retributions.aggregate(Sum('quantity'))['quantity__sum'] or 0,
+        'total_transaction': retributions.aggregate(Sum('price'))['price__sum'] or 0,
         'query_parameters': query_parameters
     }
     return render(request, 'backoffice/retributions/index.html', context_data)

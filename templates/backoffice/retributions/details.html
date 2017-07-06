@@ -8,8 +8,9 @@
 
 	<h3 class="title-section"> Details </h3>
 	<hr></hr>
+	<img class="barcode_details" src="{% static 'img/new_barcode.jpg' %}">
 	<table class="data-detail">
-		<tr><th>QR Code</th> <td class="colon">:</td> <td> {{ retribution.qr_code }} </td></tr>
+		<tr><th>QR Code</th> <td class="colon">:</td> <td> 47KA6TN54F87 </td></tr>
 		<tr><th>Destination</th> <td class="colon">:</td> <td> {{ retribution.destination.name }} </td></tr>
 		<tr><th>Type</th> <td class="colon">:</td> <td> {{ retribution.get_type_display }} </td></tr>
 		<tr><th>Quantity</th> <td class="colon">:</td> <td> {{ retribution.quantity }} </td></tr>
@@ -17,7 +18,6 @@
 		<tr><th>Transport</th> <td class="colon">:</td> <td> {{ retribution.get_transport_display }} </td></tr>
 		<tr><th>Transport ID</th> <td class="colon">:</td> <td> {{ retribution.transport_id }} </td></tr>
 	</table>
-	
 </div>
 
 <div class="clear"> </div>

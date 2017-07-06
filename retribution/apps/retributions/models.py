@@ -42,6 +42,6 @@ class Retribution(models.Model):
     def save(self, *args, **kwargs):
         if not self.qr_code:
             self.qr_code = ''.join(random.choice('12346789ACFHJKLTUXZ')
-                                   for i in range(20))
+                                   for i in range(12))
         retribution = super(Retribution, self).save(*args, **kwargs)
         return retribution
