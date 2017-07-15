@@ -13,6 +13,20 @@
     src: url('../fonts/source-sans-pro/SourceSansPro-Bold.otf');
 }
 
+@font-face {
+    font-family: 'Barcode';
+    src: url('../fonts/barcode/FRE3OF9X.eot');
+    src: url('../fonts/barcode/FRE3OF9X.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/barcode/FRE3OF9X.woff') format('woff'),
+         url('../fonts/barcode/FRE3OF9X.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Barcode2';
+    src: url('../fonts/barcode2/fre3of9.ttf');
+}
+
+
 $red: red;
 $orange: #057d92;
 $dark-orange: #057d92;
@@ -687,7 +701,6 @@ form td.typeahead_field {
 
 .barcode_details {
 	float: right;
-    width: 270;
     margin-top: 20;
     margin-right: 20;
 }

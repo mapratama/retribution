@@ -9,7 +9,7 @@
     <table>
         <tr>
             <td class="button_add">
-                <a class="button" href="{% url 'backoffice:customers:add' %}"><i class="fa fa-plus-circle white fa-fw"></i> Add</a>
+                <a class="button" href="{% url 'backoffice:users:add' %}"><i class="fa fa-plus-circle white fa-fw"></i> Add</a>
             </td>
             <td class="tdinput" colspan="2">
                 <input type="text" name="query" {% if query %}value = '{{ query }}'{% endif %}
@@ -23,17 +23,16 @@
 <table class="data-table">
     <thead>
         <tr>
-            <th>Username</th>
             <th>Name</th>
             <th>Mobile Number</th>
+            <th>Total Active Destination</th>
         </tr>
     </thead>
     {% for user in users %}
     <tr>
-        <td><a class="id" href="{% url 'backoffice:customers:detail' user.id %}"> 
-        {{ user.username }} </a></td>
-        <td>{{ user.name }}</td>
+        <td><a class="id" href="{% url 'backoffice:users:detail' user.id %}"> {{ user.name }}</a></td>
         <td>{{ user.mobile_number }}</td>
+        <td>{{ user.get_total_active_destinations }} Destination</td>
     </tr>
     {% endfor %}
 </table>

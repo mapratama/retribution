@@ -6,14 +6,21 @@ from retribution.apps.retributions.models import Retribution
 
 class BaseRetributionForm(forms.ModelForm):
 
+    destination = forms.ModelChoiceField(queryset=None)
+
     class Meta:
         model = Retribution
         fields = ('destination', 'type', 'quantity', 'transport', 'transport_id', 'mobile_number')
 
-    def save(self, user, *args, **kwargs):
+    def __init__(self, user, *args, **kwargs):
+        super(BaseRetributionForm, self).__init__(*args, **kwargs)
+        self.user = user
+        self.fields['destination'].queryset = self.user.destinations.all()
+
+    def save(self, *args, **kwargs):
         kwargs['commit'] = False
         retribution = super(BaseRetributionForm, self).save(*args, **kwargs)
-        retribution.created_by = user
+        retribution.created_by = self.user
 
         price = retribution.quantity * 2500
         if retribution.transport == Retribution.TRANSPORT.motor:

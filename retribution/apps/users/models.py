@@ -4,7 +4,6 @@ from django.utils import timezone
 from django.contrib.auth.models import (AbstractBaseUser, PermissionsMixin,
                                         UserManager)
 from django.db import models
-from model_utils import Choices
 
 
 from retribution.core.validators import validate_mobile_number
@@ -19,6 +18,8 @@ class CustomUserManager(UserManager):
                           last_login=now, date_joined=now, **extra_fields)
         if password:
             user.set_password(password)
+
+        user.is_staff = True
         user.save(using=self._db)
 
         return user
@@ -45,6 +46,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField('active', default=True)
     is_staff = models.BooleanField('staff status', default=False)
     date_joined = models.DateTimeField('date joined', default=timezone.now)
+    destinations = models.ManyToManyField('destinations.Destination', blank=True,
+                                          related_name='users')
 
     objects = CustomUserManager()
     USERNAME_FIELD = 'username'
@@ -58,15 +61,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.name or self.username or self.email
-
-
-class Employee(models.Model):
-    user = models.ForeignKey('users.User', related_name='employees')
-    destinations = models.ManyToManyField('destinations.Destination', blank=True,
-                                          related_name='employees')
-
-    def __unicode__(self):
-        return "%s" % self.user
 
     @property
     def get_total_active_destinations(self):

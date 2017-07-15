@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 
 def user_employee_required(view_func):
     def _check_user_account(request, *args, **kwargs):
-        if request.user.is_authenticated() and request.user.employees.exists():
+        if request.user.is_authenticated():
             return view_func(request, *args, **kwargs)
 
         messages.info(request, 'Please login as a employee')

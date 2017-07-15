@@ -9,7 +9,7 @@
 	<div class="dropdown detail-right">
     	<span class="box"><i class="fa fa-list white fa-fw"></i></span>
     	<div class="dropdown-content box">
-    		<a href="{% url 'backoffice:customers:edit' user.id %}"><i class="fa fa-pencil white fa-fw"></i> Edit </a>
+    		<a href="{% url 'backoffice:users:edit' user.id %}"><i class="fa fa-pencil white fa-fw"></i> Edit </a>
     	</div>
 	</div>
 
@@ -25,6 +25,11 @@
 	<table class="data-detail">
 		<tr><th>Username</th> <td class="colon">:</td> <td> {{ user.username }} </td></tr>
 		<tr><th>Email</th> <td class="colon">:</td> <td> {{ user.email }} </td></tr>
+		<tr><th>Destinations</th> <td class="colon">:</td> 
+		<td>{% for destination in destinations %}
+                {{ destination.name }}
+                {% if not forloop.last %}, {% endif %}
+            {% endfor %}</td></tr>
 	</table>
 	
 </div>

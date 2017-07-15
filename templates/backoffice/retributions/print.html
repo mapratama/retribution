@@ -5,10 +5,8 @@
 
 <head>
 	<title>Print Retribution</title>
-	<link rel="icon" href="{% static 'img/icon/icon.ico' %}" type="image/x-icon">
 	{% compress css %}
 		<link rel="stylesheet" type="text/css" href="{% static 'css/login_style.css' %}" />
-		<link rel="stylesheet" type="text/x-scss" href="{% static 'css/print.scss' %}" media="print" />
 	{% endcompress %}
 </head>
 
@@ -22,8 +20,8 @@
 		<tr><td align="center">========================================</td></tr>
 		<tr><td align="center">{{ retribution.created|date:"m/d/Y, H:i" }}</td></tr>
 		<tr><td align="center">
-			<img src="{% static 'img/new_barcode.jpg' %}"></td></tr>
-		<tr><td align="center">47KA6TN54F87</td></tr>
+			<img src="{{ retribution.generate_barcode }}"></td></tr>
+		<tr><td align="center">{{ retribution.qr_code }}</td></tr>
 		<tr><td align="center">Wisatawan : {{ retribution.get_type_display }}</td></tr>
 		<tr><td align="center">Jumlah : {{ retribution.quantity }} orang @ Rp.2.500</td></tr>
 		{% if retribution.transport %}

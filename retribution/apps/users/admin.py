@@ -1,13 +1,14 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 
-from .models import User, Employee
+from .models import User
 
 
 class UserAdmin(DjangoUserAdmin):
     #  for edit
     fieldsets = (
-        (None, {'fields': ('username', 'name', 'mobile_number', 'password',)}),
+        (None, {'fields': ('username', 'name', 'mobile_number',
+                           'password', 'destinations')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser')}),
         ('Important dates', {'fields': ('date_joined',)}),
     )
@@ -24,4 +25,3 @@ class UserAdmin(DjangoUserAdmin):
     ordering = ('username',)
 
 admin.site.register(User, UserAdmin)
-admin.site.register(Employee)

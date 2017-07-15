@@ -45,3 +45,20 @@ class Retribution(models.Model):
                                    for i in range(12))
         retribution = super(Retribution, self).save(*args, **kwargs)
         return retribution
+
+    @property
+    def generate_barcode(self):
+        transport = ''
+        if self.transport:
+            transport = 'with %s ' % self.get_transport_display()
+
+        info = str("%s for %s people (%s Tourism) %sat %s" %
+                   (self.destination, self.quantity, self.get_type_display(),
+                    transport, self.created.strftime("%d %B %Y, %H:%M")))
+        info = info.replace(" ", "+")
+
+        data = "https://barcode.tec-it.com/barcode.ashx?translate-esc=off&data="
+        data += "%s&code=MobileQRCode&unit=Fit&dpi=96&imagetype=Gif&rotation=0" % info
+        data += "&color=000000&bgcolor=FFFFFF&qunit=Mm&quiet=0&eclevel=L' alt='Barcode Generator TEC-IT'"
+
+        return data

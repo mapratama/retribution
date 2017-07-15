@@ -19,7 +19,7 @@ def index(request):
 
     context_data = {
         'destinations': destinations,
-        'title': 'Customers',
+        'title': 'Destinations',
     }
     return render(request, 'backoffice/destinations/index.html', context_data)
 

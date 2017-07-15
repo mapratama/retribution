@@ -7,7 +7,7 @@ from retribution.apps.users.models import User
 from retribution.apps.users.decorators import user_employee_required
 from retribution.core.utils import normalize_phone
 
-from .forms import CustomerEditForm, BaseCustomerForm
+from .forms import UserEditForm, BaseUserForm
 
 
 @user_employee_required
@@ -26,40 +26,40 @@ def index(request):
 
     context_data = {
         'users': users,
-        'title': 'Customers',
+        'title': 'Users',
     }
-    return render(request, 'backoffice/customers/index.html', context_data)
+    return render(request, 'backoffice/users/index.html', context_data)
 
 
 @user_employee_required
 def add(request):
-    form = BaseCustomerForm(data=request.POST or None)
+    form = BaseUserForm(data=request.POST or None)
     if form.is_valid():
         form.save()
-        messages.success(request, 'Customer has been successfully added')
-        return redirect(reverse('backoffice:customers:index'))
+        messages.success(request, 'User has been successfully added')
+        return redirect(reverse('backoffice:users:index'))
 
     context_data = {
         'form': form,
-        'title': 'Add Customer',
+        'title': 'Add User',
     }
-    return render(request, 'backoffice/customers/add.html', context_data)
+    return render(request, 'backoffice/users/add.html', context_data)
 
 
 @user_employee_required
 def edit(request, id):
     user = get_object_or_404(User, id=id)
-    form = CustomerEditForm(data=request.POST or None, instance=user)
+    form = UserEditForm(data=request.POST or None, instance=user)
     if form.is_valid():
         form.save()
-        messages.success(request, 'Customer has been successfully updated')
-        return redirect('backoffice:customers:index')
+        messages.success(request, 'User has been successfully updated')
+        return redirect('backoffice:users:index')
 
     context_data = {
         'form': form,
-        'title': 'Edit Customer',
+        'title': 'Edit User',
     }
-    return render(request, 'backoffice/customers/add.html', context_data)
+    return render(request, 'backoffice/users/add.html', context_data)
 
 
 @user_employee_required
@@ -67,6 +67,7 @@ def detail(request, id):
     user = User.objects.get(id=id)
     context_data = {
         'user': user,
-        'title': 'Customer details',
+        'destinations': user.destinations.all(),
+        'title': 'User Details',
     }
-    return render(request, 'backoffice/customers/details.html', context_data)
+    return render(request, 'backoffice/users/details.html', context_data)
