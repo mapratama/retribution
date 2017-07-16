@@ -10,7 +10,10 @@ def login_view(request):
     auth_form = AuthenticationForm(data=request.POST or None)
     if auth_form.is_valid():
         login(request, auth_form.get_user())
-        return redirect('backoffice:retributions:index')
+        if request.user.is_superuser:
+            return redirect('backoffice:retributions:index')
+        else:
+            return redirect('backoffice:retributions:add')
     else:
         invalid_data = request.method == 'POST'
 

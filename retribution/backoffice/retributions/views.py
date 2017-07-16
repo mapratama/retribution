@@ -1,7 +1,5 @@
-from django.contrib import messages
-from django.core.urlresolvers import reverse
 from django.db.models import Q, Sum
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render
 
 from retribution.apps.destinations.models import Destination
 from retribution.apps.retributions.models import Retribution
@@ -30,8 +28,10 @@ def index(request):
         retributions = form.get_bookings()
     else:
         retributions = Retribution.objects\
-            .filter(transport__in=TRANSPORT_INITIAL)\
+            .filter(transport__in=TRANSPORT_INITIAL, type__in=[Retribution.TYPE.local])\
             .select_related('destination').order_by('-created')
+
+    print form.errors
 
     query = request.GET.get('query', '').strip()
     if query:
@@ -54,7 +54,7 @@ def index(request):
     context_data = {
         'retributions': paginator.objects,
         'paginator': paginator,
-        'title': 'Retributions',
+        'title': 'Retributions Data',
         'query': query,
         'form': form,
         'total_retributions': retributions.count(),
