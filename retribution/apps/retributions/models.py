@@ -31,6 +31,8 @@ class Retribution(models.Model):
     transport = models.PositiveSmallIntegerField(choices=TRANSPORT, blank=True, null=True)
     transport_id = models.CharField('Nomor Kendaraan', max_length=50, blank=True, null=True)
     mobile_number = models.CharField(max_length=20, blank=True, null=True)
+    email = models.CharField(max_length=20, blank=True, null=True)
+    has_submitted = models.BooleanField(default=False)
     price = models.FloatField(validators=[MinValueValidator(0)])
 
     created = AutoCreatedField()

@@ -10,7 +10,8 @@ class BaseRetributionForm(forms.ModelForm):
 
     class Meta:
         model = Retribution
-        fields = ('destination', 'type', 'quantity', 'transport', 'transport_id', 'mobile_number')
+        fields = ('destination', 'type', 'quantity', 'transport',
+                  'transport_id', 'mobile_number', 'email')
 
     def __init__(self, user, *args, **kwargs):
         super(BaseRetributionForm, self).__init__(*args, **kwargs)

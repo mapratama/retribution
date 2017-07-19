@@ -1,5 +1,5 @@
 from django.contrib.auth import login, logout
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.shortcuts import redirect, render
 from django.http import JsonResponse
 
@@ -61,3 +61,18 @@ def index(request):
         return redirect('backoffice:retributions:index')
     else:
         return redirect('backoffice:retributions:add')
+
+
+def change_password(request):
+    form = PasswordChangeForm(request.user, request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return redirect('backoffice:login')
+
+    context_data = {
+        'title': 'Change Password',
+        'current_page': 'change_password',
+        'form': form
+    }
+    return render(request, 'backoffice/users/add.html', context_data)

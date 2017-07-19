@@ -19,7 +19,7 @@ class BaseUserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'name', 'mobile_number', 'email', 'destinations')
+        fields = ('name', 'mobile_number', 'email', 'destinations', 'username')
 
     def clean_email(self):
         email = self.cleaned_data['email']
@@ -30,12 +30,18 @@ class BaseUserForm(forms.ModelForm):
     def clean_mobile_number(self):
         return normalize_phone(self.cleaned_data['mobile_number'])
 
+
+class UserCreationForm(BaseUserForm):
+    password = forms.CharField()
+
     def save(self, *args, **kwargs):
-        user = super(BaseUserForm, self).save(*args, **kwargs)
+        user = super(UserCreationForm, self).save(*args, **kwargs)
         user.destinations.add(*self.cleaned_data['destinations'])
-        user.set_password(self.cleaned_data['password'])
         user.is_staff = True
         user.save()
+        user.set_password(self.cleaned_data['password'])
+        user.save()
+
         return user
 
 

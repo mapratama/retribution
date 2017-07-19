@@ -7,7 +7,7 @@ from retribution.apps.users.models import User
 from retribution.apps.users.decorators import user_employee_required
 from retribution.core.utils import normalize_phone
 
-from .forms import UserEditForm, BaseUserForm
+from .forms import UserEditForm, UserCreationForm
 
 
 @user_employee_required
@@ -33,7 +33,7 @@ def index(request):
 
 @user_employee_required
 def add(request):
-    form = BaseUserForm(data=request.POST or None)
+    form = UserCreationForm(data=request.POST or None)
     if form.is_valid():
         form.save()
         messages.success(request, 'User has been successfully added')
@@ -66,7 +66,7 @@ def edit(request, id):
 def detail(request, id):
     user = User.objects.get(id=id)
     context_data = {
-        'user': user,
+        'user_data': user,
         'destinations': user.destinations.all(),
         'title': 'User Details',
     }

@@ -3,15 +3,21 @@ from datetime import datetime as _datetime
 import os
 import unicodecsv
 import zipfile
+import json
+import requests
+import phonenumbers
+
 from hashids import Hashids
 from io import BytesIO
+
+from requests.exceptions import RequestException
 
 from django.contrib.auth import login
 from django.http import HttpResponse
 from django.utils import timezone
 from django.template.defaultfilters import slugify
 
-import phonenumbers
+from .exceptions import RetributionAPIError
 
 
 class FilenameGenerator(object):
@@ -156,3 +162,17 @@ def generate_zip_report(report, file_name):
         zip_file.writestr(file_name + '.csv', csv_buffer.getvalue())
 
     return zip_response(zip_buffer, file_name)
+
+
+def api_call(request_type, url, payloads):
+    try:
+        if request_type == 'GET':
+            response = requests.get(url, params=payloads)
+        if request_type == 'POST':
+            response = requests.post(url, json=payloads)
+    except RequestException as Error:
+        raise RetributionAPIError(Error)
+
+    response_dict = json.loads(response.text)
+    response_dict['status_code'] = response.status_code
+    return response_dict

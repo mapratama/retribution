@@ -15,8 +15,18 @@
 		<tr><th>Type</th> <td class="colon">:</td> <td> {{ retribution.get_type_display }} </td></tr>
 		<tr><th>Quantity</th> <td class="colon">:</td> <td> {{ retribution.quantity }} </td></tr>
 		<tr><th>Price</th> <td class="colon">:</td> <td> Rp. {{ retribution.price|floatformat:0|intcomma }} </td></tr>
+		{% if retribution.transport %}
 		<tr><th>Transport</th> <td class="colon">:</td> <td> {{ retribution.get_transport_display }} </td></tr>
+		{% endif %}
+		{% if retribution.transport_id %}
 		<tr><th>Transport ID</th> <td class="colon">:</td> <td> {{ retribution.transport_id }} </td></tr>
+		{% endif %}
+		{% if retribution.mobile_number %}
+		<tr><th>Mobile Number</th> <td class="colon">:</td> <td> {{ retribution.mobile_number }} </td></tr>
+		{% endif %}
+		{% if retribution.email %}
+		<tr><th>Email</th> <td class="colon">:</td> <td> {{ retribution.email }} </td></tr>
+		{% endif %}
 	</table>
 </div>
 

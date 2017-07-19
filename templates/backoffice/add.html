@@ -7,7 +7,7 @@
 <div>
 
     {{ form.non_field_errors }}
-    <form enctype="multipart/form-data" method="{{ method|default:'POST'}}" action="{{ action }}" >
+    <form method="{{ method|default:'POST'}}" action="{{ action }}">
         {% csrf_token %}
         {% for hidden in form.hidden_fields %}
             {{ hidden }}
@@ -19,15 +19,16 @@
                 <tr>
                     <th class="col-2-12">{{ field.label_tag }}</th>
                     <td class="col-10-12">
-                        <div class="form-field">{{ field }}
-                            {% if field.field.required %}
-                                <span class="required">*</span>
-                            {% endif %}
-                            
-                            {% if field.help_text %}
-                                <span class = 'helptext'>{{ field.help_text }}</span>
-                            {% endif %}
-                        </div>
+                        {{ field }}
+
+                        {% if field.field.required %}
+                            <span class="required">*</span>
+                        {% endif %}
+
+                        {% if field.help_text %}
+                            <span class = 'helptext'>{{ field.help_text }}</span>
+                        {% endif %}
+
                         {{ field.errors }}
                     </td>
                 </tr>
@@ -61,11 +62,12 @@
 {% block extra_javascript %}
     <script src="{% static 'bower/bower_components/datetimepicker/build/jquery.datetimepicker.full.js' %}"></script>
     <script>
-        var today = new Date();
-        $('#id_start_date,#id_end_date').datetimepicker({
+        var date = new Date(1990, 01, 01);
+        console.log(date);
+        $('#id_birthday').datetimepicker({
             timepicker:false,
             format:'Y-m-d',
+            value: date,
         });
     </script>
 {% endblock %}
-
