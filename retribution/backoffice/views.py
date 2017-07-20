@@ -5,21 +5,23 @@ from django.http import JsonResponse
 
 from retribution.backoffice.retributions.forms import BaseRetributionForm
 
+from .forms import LoginForm
+
 
 def login_view(request):
-    auth_form = AuthenticationForm(data=request.POST or None)
-    if auth_form.is_valid():
-        login(request, auth_form.get_user())
-        if request.user.is_superuser:
-            return redirect('backoffice:retributions:index')
-        else:
-            return redirect('backoffice:retributions:add')
-    else:
-        invalid_data = request.method == 'POST'
+    form = LoginForm(data=request.POST or None)
+    if form.is_valid():
+        a = form.save()
+        print a
+        return
+        # login(request, auth_form.get_user())
+        # if request.user.is_superuser:
+        #     return redirect('backoffice:retributions:index')
+        # else:
+        #     return redirect('backoffice:retributions:add')
 
     context_data = {
-        'form': auth_form,
-        'invalid_data': invalid_data,
+        'form': form,
         'title': 'Login'
     }
     return render(request, 'backoffice/login.html', context_data)
