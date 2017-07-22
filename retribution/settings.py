@@ -30,8 +30,10 @@ SECRET_KEY = 'u)d*3gv-l1o0$6uo9&o-46gzjwxwh28*!8y$obo69ed_o2&kle'
 DEBUG = True
 PREPARE_DURATION = 30
 ALLOWED_HOSTS = ['*']
-HOST = 'http://rumahtotok.com'
+HOST = 'http://104.131.8.149'
 FIXTURE_DIRS = ['fixtures']
+BASE_URL = 'http://104.131.8.149/api'
+TOKEN = 'kajfhasb2374632r9qdg476dgko345hl1'
 
 
 # Application definition

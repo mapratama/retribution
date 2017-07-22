@@ -10,6 +10,7 @@ from rest_framework.response import Response
 
 
 class Add(RetributionAPIView):
+
     def post(self, request):
         retributions = request.data.get('retributions')
         for retribution in retributions:

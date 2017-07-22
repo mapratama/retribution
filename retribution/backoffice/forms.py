@@ -1,4 +1,5 @@
 from django import forms
+from django.conf import settings
 
 from retribution.core.utils import api_call
 
@@ -10,12 +11,9 @@ class LoginForm(forms.Form):
         attrs={'placeholder': 'Password', 'autocomplete': 'off'}))
 
     def save(self):
-        BASE_URL = 'http://104.131.8.149/api'
-        TOKEN = 'kajfhasb2374632r9qdg476dgko345hl1'
-
-        url = BASE_URL + "/auth/login"
+        url = settings.BASE_URL + "/auth/login"
         payloads = {
-            'token': TOKEN,
+            'token': settings.TOKEN,
             'username': self.cleaned_data['username'],
             'password': self.cleaned_data['password'],
         }
