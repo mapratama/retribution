@@ -27,3 +27,4 @@ django-redis-cache==1.6.5
 rq==0.6.0
 django-rq==0.9.1
 python-gcm==0.4
+qrcode==5.3
