@@ -8,9 +8,8 @@ from retribution.core.utils import api_call
 
 def sync():
     retributions_data = []
-    # retributions = Retribution.objects.filter(has_submitted=False)\
-    #     .select_related('destination', 'created_by')
-    retributions = Retribution.objects.filter(id=20)
+    retributions = Retribution.objects.filter(has_submitted=False)\
+        .select_related('destination', 'created_by')
     for retribution in retributions:
         data = {
             "id": retribution.id,
@@ -36,5 +35,5 @@ def sync():
     }
 
     response = api_call('POST', url, payloads)
-    if response.status_code == 200:
+    if response['status_code'] == 200:
         retributions.update(has_submitted=True)
