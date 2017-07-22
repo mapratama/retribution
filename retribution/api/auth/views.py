@@ -18,8 +18,10 @@ class Login(RetributionAPIView):
 
             response = {
                 "user": {
+                    "id": user.id,
                     "username": user.username,
                     "password": user.password,
+                    "is_superuser": user.is_superuser,
                     "name": user.name or None,
                     "email": user.email or None,
                     "mobile_number": user.mobile_number or None,
@@ -30,6 +32,7 @@ class Login(RetributionAPIView):
             destinations_data = []
             for destination in destinations:
                 data = {
+                    "id": destination.id,
                     "name": destination.name,
                     "address": destination.address,
                     "people_cost": destination.people_cost,
