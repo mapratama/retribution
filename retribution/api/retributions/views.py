@@ -38,4 +38,4 @@ class Add(RetributionAPIView):
         #         }
         #     )
 
-        return Response({'status': 'oke'}, status=status.HTTP_200_OK)
+        return Response({'status': str(retributions)}, status=status.HTTP_200_OK)
