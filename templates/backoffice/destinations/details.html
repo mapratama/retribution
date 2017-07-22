@@ -18,6 +18,12 @@
 	<table class="data-detail">
 		<tr><th>Name</th> <td class="colon">:</td> <td> {{ destination.name }} </td></tr>
 		<tr><th>Address</th> <td class="colon">:</td> <td> {{ destination.address }} </td></tr>
+		<tr><th>People Cost</th> <td class="colon">:</td> <td>Rp. {{ destination.people_cost|floatformat:0|intcomma }} </td></tr>
+       	<tr><th>Motor Cost</th> <td class="colon">:</td> <td>Rp. {{ destination.motor_cost|floatformat:0|intcomma }} </td></tr>
+       	<tr><th>Sedan Cost</th> <td class="colon">:</td> <td>Rp. {{ destination.sedan_cost|floatformat:0|intcomma }} </td></tr>
+       	<tr><th>Mini Bus Cost</th> <td class="colon">:</td> <td>Rp. {{ destination.mini_bus_cost|floatformat:0|intcomma }} </td></tr>
+       	<tr><th>Micro Bus Cost</th> <td class="colon">:</td> <td>Rp. {{ destination.micro_bus_cost|floatformat:0|intcomma }} </td></tr>
+       	<tr><th>Bus Cost</th> <td class="colon">:</td> <td>Rp. {{ destination.bus_cost|floatformat:0|intcomma }} </td></tr>
 	</table>
 	
 </div>
