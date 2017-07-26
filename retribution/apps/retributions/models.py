@@ -1,8 +1,12 @@
 import random
+import qrcode
+import base64
+
+from io import BytesIO
 
 from django.db import models
-
 from django.core.validators import MinValueValidator
+from django.utils import timezone
 
 from model_utils import Choices
 from model_utils.fields import AutoCreatedField
@@ -56,11 +60,14 @@ class Retribution(models.Model):
 
         info = str("%s for %s people (%s Tourism) %sat %s" %
                    (self.destination, self.quantity, self.get_type_display(),
-                    transport, self.created.strftime("%d %B %Y, %H:%M")))
-        info = info.replace(" ", "+")
+                    transport, timezone.localtime(self.created).strftime("%d %B %Y, %H:%M")))
 
-        data = "https://barcode.tec-it.com/barcode.ashx?translate-esc=off&data="
-        data += "%s&code=MobileQRCode&unit=Fit&dpi=96&imagetype=Gif&rotation=0" % info
-        data += "&color=000000&bgcolor=FFFFFF&qunit=Mm&quiet=0&eclevel=L' alt='Barcode Generator TEC-IT'"
+        qrcode_img = qrcode.QRCode(box_size=5, border=0)
+        qrcode_img.add_data(info)
+        qrcode_img.make(fit=True)
 
-        return data
+        buffer_ = BytesIO()
+        img = qrcode_img.make_image(fill_color="white", back_color="black")
+        img.save(buffer_, format="JPEG")
+
+        return base64.b64encode(buffer_.getvalue())

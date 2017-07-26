@@ -85,6 +85,7 @@ def add(request):
 @user_employee_required
 def detail(request, id):
     retribution = Retribution.objects.get(id=id)
+
     context_data = {
         'retribution': retribution,
         'title': 'Retribution details',

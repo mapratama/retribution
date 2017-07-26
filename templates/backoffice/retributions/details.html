@@ -8,7 +8,7 @@
 
 	<h3 class="title-section"> Details </h3>
 	<hr></hr>
-	<img class="barcode_details" src="{{ retribution.generate_barcode }}">
+	<img class="barcode_details" src="data:image/png;base64, {{ retribution.generate_barcode }}">
 	<table class="data-detail">
 		<tr><th>QR Code</th> <td class="colon">:</td> <td> {{ retribution.qr_code }} </td></tr>
 		<tr><th>Destination</th> <td class="colon">:</td> <td> {{ retribution.destination.name }} </td></tr>
