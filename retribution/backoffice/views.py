@@ -45,10 +45,7 @@ def login_view(request):
 
         user.backend = 'django.contrib.auth.backends.ModelBackend'
         login(request, user)
-        if user.is_superuser:
-            return redirect('backoffice:retributions:index')
-        else:
-            return redirect('backoffice:retributions:add')
+        return redirect('backoffice:retributions:add')
 
     context_data = {
         'form': form,

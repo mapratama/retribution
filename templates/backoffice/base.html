@@ -28,13 +28,7 @@
         <div class="col-2-12 nav-left">
             <div class="nav-left">
                 <ul>
-                    {% if user.is_superuser %}
-                    <li><a href="{% url 'backoffice:users:index' %}"><i class="fa fa-users fa-fw"></i> Users</a></li>
-                    <li><a href="{% url 'backoffice:destinations:index' %}"><i class="fa  fa-map-marker silver fa-fw"></i> Destinations</a></li>
-                    <li><a href="{% url 'backoffice:retributions:index' %}"><i class="fa fa-book fa-fw"></i> Retribution Data</a></li>
-                    {% endif %}
                     <li><a href="{% url 'backoffice:retributions:add' %}"><i class="fa fa fa-plus-circle fa-fw"></i> Add Retribution</a></li>
-                    <li><a href="{% url 'backoffice:change_password' %}"><i class="fa fa fa-lock fa-fw"></i> Change Password</a></li>
                 </ul>
             </div>
         </div>

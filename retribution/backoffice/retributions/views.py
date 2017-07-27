@@ -67,15 +67,15 @@ def index(request):
 
 @user_employee_required
 def add(request):
-    form = BaseRetributionForm(data=request.POST or None, user=request.user)
+    form = BaseRetributionForm(data=request.POST or None)
     context_data = {
         'form': form,
         'title': 'Add Retribution',
     }
 
     if form.is_valid():
-        retribution = form.save()
-        new_form = BaseRetributionForm(data=None, user=request.user)
+        retribution = form.save(user=request.user)
+        new_form = BaseRetributionForm(data=None)
         context_data['form'] = new_form
         context_data['retribution'] = retribution
 
