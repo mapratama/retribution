@@ -56,11 +56,13 @@ class Retribution(models.Model):
     def generate_barcode(self):
         transport = ''
         if self.transport:
-            transport = 'with %s ' % self.get_transport_display()
+            transport = '+ %s' % self.get_transport_display()
+        if self.transport_id:
+            transport = transport + ' (%s)' & self.transport_id
 
-        info = str("%s for %s people (%s Tourism) %sat %s" %
-                   (self.destination, self.quantity, self.get_type_display(),
-                    transport, timezone.localtime(self.created).strftime("%d %B %Y, %H:%M")))
+        info = str("Tiket masuk %s untuk %s orang %s, %s" %
+                   (self.destination, self.quantity, transport,
+                    timezone.localtime(self.created).strftime("%d %B %Y %H:%M")))
 
         qrcode_img = qrcode.QRCode(box_size=5, border=0)
         qrcode_img.add_data(info)
