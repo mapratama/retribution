@@ -22,8 +22,8 @@
                 <h2 class="login-title">Sukabumi Tourism Retributions</h2>
             </div>
 
-            {% if messages %}
-                <div class="message animated once shake">Please login as user employee!</div>
+            {% if form.username.errors %}
+                <div class="message animated once shake">{{ form.username.errors.as_text }}</div>
             {% endif %}
             
             <form method="POST" class="form form--login" action="{% url 'backoffice:login' %}">
