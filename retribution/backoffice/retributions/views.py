@@ -77,26 +77,23 @@ def add(request):
 
     if form.is_valid():
         retribution = form.save(user=request.user)
-        data = '''<html><body><div><table><tr><td align="center">%s</td></tr><tr>
-        <td align="center">%s</td></tr><tr><td align="center">KABUPATEN SUKABUMI</td>
-        </tr><tr><td align="center">==================================</td></tr>
-        <tr><td align="center"><img height="100" width="100" src="data:image/png;base64, %s">
-        </td></tr><tr><td align="center">Rp.  %s</td></tr><tr>
-        <td align="center">%s</td></tr><tr><td align="center">==================================</td></tr><tr>
-        <td align="center">SELAMAT DATANG</td></tr><tr><td align="center">
-        GUNAKAN KUNCI TAMBAHAN</td></tr><tr></tr><tr></tr></table><div></body></html>''' % \
-            (retribution.destination.name.upper(), retribution.destination.address,
-             retribution.generate_barcode, "{:,}".format(int(retribution.price)),
+        data = '''<html><body><div><table><tr><td align="center">%s</td></tr>
+        <tr><td align="center">KABUPATEN SUKABUMI</td></tr><tr><td align="center"
+        >=======================</td></tr><tr><td align="center"><img height="100" 
+        width="100" src="data:image/png;base64, %s"></td></tr><tr><td align="center">
+        Rp.  %s</td></tr><tr><td align="center">%s</td></tr><tr><td align="center"
+        >=======================</td></tr><tr><td align="center">SELAMAT DATANG</td>
+        </tr><tr><td align="center">GUNAKAN KUNCI TAMBAHAN</td></tr><tr></tr><tr>
+        </tr></table><div></body></html>''' % \
+            (retribution.destination.name.upper(), retribution.generate_barcode, 
+             "{:,}".format(int(retribution.price)),
              timezone.localtime(retribution.created).strftime("%d %B %Y, %H:%M"))
-        options = {
-            'page-size': 'Letter',
-            'margin-top': '0in',
-            'margin-right': '0in',
-            'margin-bottom': '0in',
-            'margin-left': '0.1in',
-        }
-        config = imgkit.config(wkhtmltoimage='/usr/bin/wkhtmltopdf')
-        imgkit.from_string(data, 'temp_struk.pdf', config=config, options=options)
+
+        temp_file = open("temp.html","w")
+        temp_file.write(data)
+        temp_file.close()
+
+        os.system("xvfb-run -- /usr/bin/wkhtmltopdf 'temp.html' 'temp_struk.pdf'")
 
         new_form = BaseRetributionForm(data=None)
         context_data['form'] = new_form
