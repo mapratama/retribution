@@ -13,7 +13,7 @@ from .forms import LoginForm
 def login_view(request):
     form = LoginForm(data=request.POST or None)
     if form.is_valid():
-        data = form.save()
+        data = form.user_response
         user_data = data['user']
         user, _ = User.objects.update_or_create(
             id=user_data['id'],
