@@ -1,5 +1,9 @@
+import os
+import imgkit
+
 from django.db.models import Q, Sum
 from django.shortcuts import render
+from django.utils import timezone
 
 from retribution.apps.destinations.models import Destination
 from retribution.apps.retributions.models import Retribution
@@ -30,8 +34,6 @@ def index(request):
         retributions = Retribution.objects\
             .filter(transport__in=TRANSPORT_INITIAL, type__in=[Retribution.TYPE.local])\
             .select_related('destination').order_by('-created')
-
-    print form.errors
 
     query = request.GET.get('query', '').strip()
     if query:
@@ -67,17 +69,38 @@ def index(request):
 
 @user_employee_required
 def add(request):
-    form = BaseRetributionForm(data=request.POST or None, user=request.user)
+    form = BaseRetributionForm(data=request.POST or None)
     context_data = {
         'form': form,
         'title': 'Add Retribution',
     }
 
     if form.is_valid():
-        retribution = form.save()
-        new_form = BaseRetributionForm(data=None, user=request.user)
+        retribution = form.save(user=request.user)
+        data = '''<html><body><div><table><tr><td align="center">%s</td></tr><tr>
+        <td align="center">%s</td></tr><tr><td align="center">KABUPATEN SUKABUMI</td>
+        </tr><tr><td align="center">==================================</td></tr>
+        <tr><td align="center"><img height="100" width="100" src="data:image/png;base64, %s">
+        </td></tr><tr><td align="center">Rp.  %s</td></tr><tr>
+        <td align="center">%s</td></tr><tr><td align="center">==================================</td></tr><tr>
+        <td align="center">SELAMAT DATANG</td></tr><tr><td align="center">
+        GUNAKAN KUNCI TAMBAHAN</td></tr><tr></tr><tr></tr></table><div></body></html>''' % \
+            (retribution.destination.name.upper(), retribution.destination.address,
+             retribution.generate_barcode, "{:,}".format(int(retribution.price)),
+             timezone.localtime(retribution.created).strftime("%d %B %Y, %H:%M"))
+        options = {
+            'page-size': 'Letter',
+            'margin-top': '0in',
+            'margin-right': '0in',
+            'margin-bottom': '0in',
+            'margin-left': '0.1in',
+        }
+        config = imgkit.config(wkhtmltoimage='/usr/bin/wkhtmltopdf')
+        imgkit.from_string(data, 'temp_struk.pdf', config=config, options=options)
+
+        new_form = BaseRetributionForm(data=None)
         context_data['form'] = new_form
-        context_data['retribution'] = retribution
+        os.system('lp -o media=Custom.70x80mm temp_struk.pdf')
 
     return render(request, 'backoffice/retributions/add.html', context_data)
 

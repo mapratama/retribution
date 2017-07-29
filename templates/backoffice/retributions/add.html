@@ -55,22 +55,3 @@
 </div>
 {% endblock %}
 
-{% block extra_javascript %}
-    <script>
-        window.onload = function() { 
-            if (!'{{ retribution }}') {
-                return;
-            }
-
-            var mywindow = window.open('', 'PRINT', 'height=470,width=420');
-
-            mywindow.document.write('<html><head><title>Print Retribution</title></head><body><div><table class="data-detail"><tr><td align="center">{{ retribution.destination.name|upper }}</td></tr><tr><td align="center">{{ retribution.destination.address|capfirst }}</td></tr><tr><td align="center">KABUPATEN SUKABUMI</td></tr><tr><td align="center">========================================</td></tr><tr><td align="center">{{ retribution.created|date:"m/d/Y, H:i" }}</td></tr><tr><td align="center"><img src="data:image/png;base64, {{ retribution.generate_barcode }}"></td></tr><tr><td align="center">{{ retribution.qr_code }}</td></tr><tr><td align="center">Wisatawan : {{ retribution.get_type_display }}</td></tr><tr><td align="center">Jumlah : {{ retribution.quantity }} orang @ Rp. {{ retribution.destination.people_cost|floatformat:0 }}</td></tr>{% if retribution.transport %}<tr><td align="center">Kendaraan : {{ retribution.get_transport_display }} ({{ retribution.transport_id }})</td></tr>{% endif %}<tr><td align="center">Rp.  {{ retribution.price|floatformat:0 }}</td></tr><tr><td align="center">=========================================</td></tr><tr><td align="center">SELAMAT DATANG</td></tr><tr><td align="center">GUNAKAN KUNCI TAMBAHAN</td></tr></table><div></body></html>');
-
-            mywindow.document.close();
-            mywindow.focus(); 
-
-            mywindow.print();
-            return true;
-        }
-    </script>
-{% endblock %}
