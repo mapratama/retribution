@@ -21,21 +21,18 @@ class Add(RetributionAPIView):
             created_time = datetime.utcfromtimestamp(value)
             created_time = created_time.replace(tzinfo=pytz.utc)
 
-            Retribution.objects.update_or_create(
-                id=retribution['id'],
-                defaults={
-                    'destination_id': retribution['destination'],
-                    'qr_code': retribution['qr_code'],
-                    'type': retribution['type'],
-                    'quantity': retribution['quantity'],
-                    'price': retribution['price'],
-                    'created_by_id': retribution['created_by'],
-                    'created': created_time,
-                    'transport': retribution['transport'],
-                    'transport_id': retribution['transport_id'],
-                    'mobile_number': retribution['mobile_number'],
-                    'email': retribution['email'],
-                }
+            Retribution.objects.create(
+                destination_id=retribution['destination'],
+                qr_code=retribution['qr_code'],
+                type=retribution['type'],
+                quantity=retribution['quantity'],
+                price=retribution['price'],
+                created_by_id=retribution['created_by'],
+                created=created_time,
+                transport=retribution['transport'],
+                transport_id=retribution['transport_id'],
+                mobile_number=retribution['mobile_number'],
+                email=retribution['email'],
             )
 
         return Response({'status': 'oke'}, status=status.HTTP_200_OK)
