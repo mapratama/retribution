@@ -2,6 +2,7 @@ from django import forms
 
 from retribution.apps.destinations.models import Destination
 from retribution.apps.retributions.models import Retribution
+from retribution.core.utils import prepare_datetime_range
 
 
 class BaseRetributionForm(forms.ModelForm):
@@ -80,6 +81,7 @@ class RetributionFilterForm(forms.Form):
             retributions = retributions.filter(transport__in=transport)
 
         if start_date and end_date:
-            retributions = retributions.filter(created__gte=start_date, created__lte=end_date)
+            start_date, end_date = prepare_datetime_range(start_date, end_date)
+            retributions = retributions.filter(created__range=(start_date, end_date))
 
         return retributions
