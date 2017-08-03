@@ -84,7 +84,7 @@ def deploy_project(target_dir='retribution'):
     # collect_static()
     # compress_static()
     # sudo('chown -R www-data.www-data %s' % env.PROJECT_PATH)
-    migrate()
+    # migrate()
 
 
 def check_django_shell():
