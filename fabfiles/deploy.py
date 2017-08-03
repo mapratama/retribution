@@ -26,11 +26,7 @@ def setup_env(target_dir='retribution'):
 
 def install_project_requirements(path_to_file=None):
     path_to_file = path_to_file or env.REQUIREMENTS_FILE
-    print 'aaaaaaaaaaaaaaaaaa'
-    print env.REQUIREMENTS_FILE
-    print exists(path_to_file)
     if exists(path_to_file):
-        print 'bbbbb'
         sudo('{0} install -q -r {1}'.format(env.PIP_BIN, path_to_file))
 
 
@@ -83,11 +79,11 @@ def deploy_project(target_dir='retribution'):
     # }
     # sudo('mv %ssettings_local.py.tpl %s/%s/settings_local.py' %
         # (env.HOME_PATH, env.SRC_PATH, env.PROJECT_NAME))
-    install_project_requirements()
+    # install_project_requirements()
     # install_front_end_requirements()
     # collect_static()
     # compress_static()
-    sudo('chown -R www-data.www-data %s' % env.PROJECT_PATH)
+    # sudo('chown -R www-data.www-data %s' % env.PROJECT_PATH)
     migrate()
 
 

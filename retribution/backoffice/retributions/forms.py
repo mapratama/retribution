@@ -7,8 +7,7 @@ from retribution.core.utils import prepare_datetime_range
 
 class BaseRetributionForm(forms.ModelForm):
 
-    destination = forms.ModelChoiceField(queryset=Destination.objects.all(),
-                                         initial=Destination.objects.first())
+    destination = forms.ModelChoiceField(queryset=Destination.objects.all())
 
     class Meta:
         model = Retribution
