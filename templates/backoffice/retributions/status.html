@@ -1,0 +1,29 @@
+{% extends 'backoffice/base.html' %}
+{% load staticfiles %}
+{% load humanize %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="content">
+
+	<h3 class="title-section"> {% if total %}Terdapat data yang belum diproses, Silahkan klik tombol kirim{% else %}Status{% endif %} </h3>
+	<hr></hr>
+
+	<form method="POST">
+    {% csrf_token %}
+	<table class="data-detail">
+		<tr><td>Total belum terkirim</td> <td class="colon">:</td> <td> {{ total }} </td></tr>
+		{% if total %}
+		<tr>
+			<td></td>
+			<td colspan="2">
+				<button class="button"><i class="fa fa-floppy-o white fa-fw"></i> {{ button_text|default:'Kirim' }}</button>
+			</td>
+		</tr>
+		{% endif %}
+	</table>
+	</form>
+</div>
+
+<div class="clear"> </div>
+{% endblock %}

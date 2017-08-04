@@ -5,6 +5,7 @@ from django.http import JsonResponse
 
 from retribution.apps.users.models import User
 from retribution.apps.destinations.models import Destination
+from retribution.apps.retributions.models import Retribution
 from retribution.backoffice.retributions.forms import BaseRetributionForm
 
 from .forms import LoginForm
@@ -81,6 +82,9 @@ def create(request):
 
 
 def log_out(request):
+    if Retribution.objects.filter(has_submitted=False).exists():
+        return redirect('backoffice:retributions:status')
+
     logout(request)
     return redirect('backoffice:login')
 

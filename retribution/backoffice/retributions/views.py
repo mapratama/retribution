@@ -7,6 +7,7 @@ from django.utils import timezone
 
 from retribution.apps.destinations.models import Destination
 from retribution.apps.retributions.models import Retribution
+from retribution.apps.retributions.utils import sync
 from retribution.apps.users.decorators import user_employee_required
 from retribution.core.utils import normalize_phone, Page
 
@@ -111,3 +112,15 @@ def detail(request, id):
         'title': 'Retribution details',
     }
     return render(request, 'backoffice/retributions/details.html', context_data)
+
+
+@user_employee_required
+def status(request):
+    if request.method == 'POST':
+        sync()
+
+    context_data = {
+        'total': Retribution.objects.filter(has_submitted=False).count(),
+        'title': 'Retribution status',
+    }
+    return render(request, 'backoffice/retributions/status.html', context_data)
