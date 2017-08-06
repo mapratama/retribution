@@ -1,4 +1,7 @@
 from django import forms
+from django.db.models import Q
+
+from model_utils import Choices
 
 from retribution.apps.destinations.models import Destination
 from retribution.apps.retributions.models import Retribution
@@ -42,8 +45,18 @@ class BaseRetributionForm(forms.ModelForm):
 class RetributionFilterForm(forms.Form):
     type = forms.MultipleChoiceField(choices=Retribution.TYPE, required=False,
                                      widget=forms.CheckboxSelectMultiple())
+
+    TRANSPORT = Choices(
+        (1, 'motor', 'Motor'),
+        (2, 'sedan', 'Sedan'),
+        (3, 'mini_bus', 'Mini Bus'),
+        (4, 'micro_bus', 'Micro Bus'),
+        (5, 'bus', 'Bus'),
+        (6, 'other', 'Tanpa Kendaraan'),
+    )
+
     transport = forms.MultipleChoiceField(
-        choices=Retribution.TRANSPORT, required=False,
+        choices=TRANSPORT, required=False,
         widget=forms.CheckboxSelectMultiple()
     )
     destinations = forms.ModelMultipleChoiceField(
@@ -72,16 +85,21 @@ class RetributionFilterForm(forms.Form):
         end_date = self.cleaned_data['end_date']
         type = self.cleaned_data['type']
         transport = self.cleaned_data['transport']
-        retributions = Retribution.objects.filter(destination__in=self.cleaned_data['destinations'])\
+        retributions = Retribution.objects \
+            .filter(destination__in=self.cleaned_data['destinations'],
+                    type__in=type) \
             .select_related('destination').order_by('-created')
-
-        if type:
-            retributions = retributions.filter(type__in=type)
-        if transport:
-            retributions = retributions.filter(transport__in=transport)
 
         if start_date and end_date:
             start_date, end_date = prepare_datetime_range(start_date, end_date)
             retributions = retributions.filter(created__range=(start_date, end_date))
+
+        if str(self.TRANSPORT.other) in transport:
+            retributions = retributions.filter(
+                Q(transport__in=transport) |
+                Q(transport__isnull=True)
+            )
+        else:
+            retributions = retributions.filter(transport__in=transport).exclude(transport__isnull=True)
 
         return retributions
