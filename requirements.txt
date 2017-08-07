@@ -29,3 +29,4 @@ django-rq==0.9.1
 python-gcm==0.4
 qrcode==5.3
 imgkit==0.1.7
+tablib==0.11.5

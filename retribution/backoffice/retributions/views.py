@@ -1,26 +1,32 @@
+import ast
+import tablib
 import os
 import imgkit
 
 from django.db.models import Q, Sum
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils import timezone
 
 from retribution.apps.destinations.models import Destination
 from retribution.apps.retributions.models import Retribution
+from retribution.apps.retributions.utils import generate_report
 from retribution.apps.users.decorators import user_employee_required
-from retribution.core.utils import normalize_phone, Page
+from retribution.core.utils import normalize_phone, Page, prepare_datetime_range
 
 from .forms import BaseRetributionForm, RetributionFilterForm
 
 
 @user_employee_required
 def index(request):
-    TRANSPORT_INITIAL = [Retribution.TRANSPORT.motor, Retribution.TRANSPORT.sedan,
-                         Retribution.TRANSPORT.bus]
+    start_date, end_date = prepare_datetime_range(timezone.now(), timezone.now())
+    TRANSPORT_INITIAL = [Retribution.TRANSPORT.motor, Retribution.TRANSPORT.bus, 6]
     initial = {
         'type': [Retribution.TYPE.local],
         'transport': TRANSPORT_INITIAL,
         'destinations': Destination.objects.all(),
+        'start_date': start_date.strftime('%Y/%m/%d'),
+        'end_date': end_date.strftime('%Y/%m/%d'),
     }
 
     query_parameters = request.GET.copy()
@@ -28,11 +34,19 @@ def index(request):
         del query_parameters['page']
 
     form = RetributionFilterForm(data=query_parameters or None, initial=initial)
+    
+    print_report = False
     if form.is_valid():
         retributions = form.get_bookings()
+        print_report = form.cleaned_data['print_report']
     else:
         retributions = Retribution.objects\
-            .filter(transport__in=TRANSPORT_INITIAL, type__in=[Retribution.TYPE.local])\
+            .filter(
+                Q(transport__in=TRANSPORT_INITIAL) |
+                Q(transport__isnull=True),
+                type__in=[Retribution.TYPE.local],
+                created__range=(start_date, end_date)
+            )\
             .select_related('destination').order_by('-created')
 
     query = request.GET.get('query', '').strip()
@@ -51,9 +65,30 @@ def index(request):
     else:
         query_parameters = ''
 
+    if print_report:
+        report = generate_report(retributions, start_date, end_date)
+        headers = (
+            'Code',
+            'Destination',
+            'Type',
+            'Transport',
+            'Date',
+            'Qty',
+            'Retribution'
+        )
+        data = tablib.Dataset(*report, headers=headers)
+        response = HttpResponse(data.xls, content_type='application/vnd.ms-excel')
+        file_name = 'retribution report {start_date} s/d {end_date}'.format(
+                start_date=start_date.strftime('%Y/%m/%d'),
+                end_date=end_date.strftime('%Y/%m/%d'))
+        response['Content-Disposition'] = 'attachment; filename="%s.xls"' % file_name
+        return response
+
     page = request.GET.get('page', 1)
     paginator = Page(retributions, page, step=10)
     context_data = {
+
+
         'retributions': paginator.objects,
         'paginator': paginator,
         'title': 'Retributions Data',

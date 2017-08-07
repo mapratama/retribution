@@ -63,8 +63,9 @@ class RetributionFilterForm(forms.Form):
         queryset=Destination.objects.all(), widget=forms.CheckboxSelectMultiple(),
         required=False
     )
-    start_date = forms.DateField(input_formats=["%Y/%m/%d"], required=False)
-    end_date = forms.DateField(input_formats=["%Y/%m/%d"], required=False)
+    start_date = forms.DateField(input_formats=["%Y/%m/%d"])
+    end_date = forms.DateField(input_formats=["%Y/%m/%d"])
+    print_report = forms.BooleanField(required=False)
 
     def clean(self):
         cleaned_data = super(RetributionFilterForm, self).clean()

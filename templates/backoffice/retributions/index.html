@@ -18,15 +18,17 @@
         <tr><td class="first">Destination </td> <td colspan="6">{{ form.destinations }}</td></tr>
         <tr><td class="first">Tourist Type </td> <td colspan="6">{{ form.type }}</td></tr>
         <tr><td class="first">Transport Type </td> <td colspan="6">{{ form.transport }}</td></tr>
-        <tr><td></td><td><button class="button">Submit</button></td></tr></tr>
+        <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+        <tr><td></td><td><button class="button">Generate Data</button></td><td>{{ form.print_report }}  Download Excel</td></tr></tr>
     </table>
+</form>
+
 <div class="table-wrapper">
 <div class="summary">
     <p class="title">Total Retribution : {{ total_retributions }} transaksi</p>
     <p class="title">Total Customer : {{ total_customer }} orang</p>
     <p class="title">Total Transaction : Rp. {{ total_transaction|floatformat:0|intcomma }} </p>
 </div>
-</form>
 
 <table class="data-table">
     <thead>
@@ -81,4 +83,5 @@
             maxDate : today
         });
     </script>
+
 {% endblock %}
