@@ -58,7 +58,7 @@ class Retribution(models.Model):
         if self.transport:
             transport = '+ %s' % self.get_transport_display()
         if self.transport_id:
-            transport = transport + ' (%s)' & self.transport_id
+            transport = transport + ' (%s)' % self.transport_id
 
         info = str("Tiket masuk %s untuk %s orang %s, %s" %
                    (self.destination, self.quantity, transport,
